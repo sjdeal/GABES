@@ -85,7 +85,7 @@ public class Item implements Serializable {
   public void addItem(){
       Connection mycon = DatabaseBConnection.openDBConnection();
       try{
-          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
+          String queryString = "EXECUTE team2.ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
           PreparedStatement stmt = mycon.prepareStatement(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.sellerId);
