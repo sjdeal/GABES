@@ -80,4 +80,8 @@ public class Item implements Serializable {
   
   public Item() {
   }
+  
+  public ResultSet search(){
+	  
+  }
 }
