@@ -3,10 +3,11 @@ package group;
 import java.io.*;
 import java.sql.*;
 import oracle.jdbc.*;
+import group.DatabaseBConnection;
 
 public class Item implements Serializable {
-  private double itemId;
-  private double sellerId;
+  private int itemId;
+  private int sellerId;
   private String itemName;
   private String category;
   private double startPrice;
@@ -14,19 +15,19 @@ public class Item implements Serializable {
   private String auctionEnd;
   private String description;
   
-  public double getItemId() {
+  public int getItemId() {
     return itemId;
   }
   
-  public void setItemId(double itemId) {
+  public void setItemId(int itemId) {
     this.itemId = itemId;
   }
   
-  public double getSellerId() {
+  public int getSellerId() {
     return sellerId;
   }
   
-  public void setSellerId(double sellerId) {
+  public void setSellerId(int sellerId) {
     this.sellerId = sellerId;
   }
   
@@ -70,18 +71,14 @@ public class Item implements Serializable {
     this.auctionEnd = auctionEnd;
   }
   
-  public double getDescription() {
+  public String getDescription() {
     return description;
   }
   
-  public void setDescription(double description) {
+  public void setDescription(String description) {
     this.description = description;
   }
   
   public Item() {
-  }
-  
-  public ResultSet search(){
-	  
   }
 }
