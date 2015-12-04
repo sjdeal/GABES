@@ -2,11 +2,11 @@ package group;
 
 import java.io.*;
 import java.sql.*;
-import oracle.jdbc.*;
+import group.DatabaseBConnection;
 
 public class Item implements Serializable {
-  private double itemId;
-  private double sellerId;
+  private Integer itemId;
+  private Integer sellerId;
   private String itemName;
   private String category;
   private double startPrice;
@@ -14,19 +14,26 @@ public class Item implements Serializable {
   private String auctionEnd;
   private String description;
   
-  public double getItemId() {
-    return itemId;
+  private ResultSet result;
+  
+  public int getItemId() {
+	  return this.itemId;
   }
   
-  public void setItemId(double itemId) {
+  
+  //public double getItemId() {
+    //return itemId;
+  //}
+  
+  public void setItemId(int itemId) {
     this.itemId = itemId;
   }
   
-  public double getSellerId() {
+  public int getSellerId() {
     return sellerId;
   }
   
-  public void setSellerId(double sellerId) {
+  public void setSellerId(int sellerId) {
     this.sellerId = sellerId;
   }
   
@@ -70,14 +77,88 @@ public class Item implements Serializable {
     this.auctionEnd = auctionEnd;
   }
   
-  public double getDescription() {
+  public String getDescription() {
     return description;
   }
   
-  public void setDescription(double description) {
+  public void setDescription(String description) {
     this.description = description;
+  }
+  
+  public Connection openDBConnection() {
+	    try {
+	      // Load driver and link to driver manager
+	      Class.forName("oracle.jdbc.OracleDriver");
+	      // Create a connection to the specified database
+	      Connection myConnection = DriverManager.getConnection("jdbc:oracle:thin:@//cscioraclesrv.ad.csbsju.edu:1521/" +
+                                                            "csci.cscioraclesrv.ad.csbsju.edu","team2", "dhhm4");
+	      return myConnection;
+	    } catch (Exception E) {
+	      E.printStackTrace();
+	    }
+	    return null;
+	  }
+  
+  public ResultSet getItemInfo() throws IllegalStateException {
+	try {
+	    Connection con = openDBConnection();
+	    Statement stmt = con.createStatement();
+	    String queryString = "SELECT * FROM GABES_ITEM WHERE ITEMID = 5";
+	    ResultSet result = stmt.executeQuery(queryString);
+	    return result;
+	  }
+	    
+	  catch(SQLException se){}
+	    
+	  return result;
+	  
   }
   
   public Item() {
   }
+  
+  public void addItem(){
+      Connection mycon = DatabaseBConnection.openDBConnection();
+      try{
+          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
+          PreparedStatement stmt = mycon.prepareStatement(queryString);
+          stmt.clearParameters();
+          stmt.setInt(1, this.sellerId);
+          stmt.setString(2, this.itemName);
+          stmt.setString(3, this.category);
+          stmt.setDouble(4, this.startPrice);
+          stmt.setString(5, this.auctionStart);
+          stmt.setString(6, this.auctionEnd);
+          stmt.setString(7, this.description);
+          stmt.executeQuery();
+          stmt.close();
+          mycon.close();
+      }
+      catch (Exception E) {
+          E.printStackTrace();
+      }
+  }
+  public ResultSet search(){
+	  Connection con = DatabaseBConnection.openDBConnection();
+	    ResultSet result = null;
+//	    if(!this.loggedIn){
+//	      throw new IllegalStateException("CAN'T GET DATA IF USER IS NOT LOGGED IN");
+//	    }
+	    try{
+	    Statement st = con.createStatement();
+	    String query = "Select * From GABES_ITEM WHERE 1=1";
+	    if(this.itemId != null){
+	    	query += " AND ITEMID = " + this.itemId;
+	    }
+	    if(this.description != (String) null){
+	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%'";
+	    }
+	    if(this.category != (String) null){
+	    	query += " AND CATEGORY = " + this.category;
+	    }
+	    result = st.executeQuery(query);
+	    }
+	    catch(SQLException e){}
+	    return result;
+	  }
 }

@@ -3,21 +3,22 @@ package group;
 import java.io.*;
 import java.sql.*;
 import oracle.jdbc.*;
+import sjdeal.companyDB.DatabaseBConnection;
 
 public class Customer implements Serializable {
-  private double userId;
+  private int userId;
   private String fName;
   private String lName;
   private String email;
   private String phone;
-  private double numItemsSold;
-  private double sellerRating;
+  private int numItemsSold;
+  private int sellerRating;
   
-  public double getUserId() {
+  public int getUserId() {
     return userId;
   }
   
-  public void setUserId(double userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
   }
   
@@ -53,18 +54,61 @@ public class Customer implements Serializable {
     this.phone = phone;
   }
   
-  public double getNumItemsSold() {
+  public int getNumItemsSold() {
     return numItemsSold;
   }
   
-  public void setNumItemsSold(double numItemsSold) {
+  public void setNumItemsSold(int numItemsSold) {
     this.numItemsSold = numItemsSold;
   }
   
-  public double getSellerRating() {
+  public int getSellerRating() {
     return sellerRating;
+  }
+  
+  public int setSellerRating(int sellerRating){
+	  this.sellerRating = sellerRating;
   }
   
   public Customer() {
   }
+  
+  public ResultSet getCustomer(){
+      Connection mycon = DatabaseBConnection.openDBConnection();
+      try{
+          
+          String queryString = "SELECT * FROM team2.GABES_CUSTOMER WHERE USERID=?";
+          PreparedStatement stmt = mycon.prepareStatement(queryString);
+          stmt.clearParameters();
+          stmt.setInt(1, this.userId);
+          return stmt.executeQuery();
+      }
+      catch (Exception E) {
+          E.printStackTrace();
+          return null;
+      }
+  }
+  
+  public void editCustomer(){
+      Connection mycon = DatabaseBConnection.openDBConnection();
+      try{
+          
+          String queryString = "update team2.GABES_CUSTOMER set " 
+                  + "FNAME = ?, LNAME = ?, EMAIL = ?, PHONE = ?"
+        		  + "WHERE USERID = ?";
+          PreparedStatement stmt = mycon.prepareStatement(queryString);
+          stmt.clearParameters();
+          stmt.setString(1, this.fName);
+          stmt.setString(2, this.lName);
+          stmt.setString(3, this.email);
+          stmt.setString(4, this.phone);
+          stmt.setInt(5, this.userId);
+          stmt.executeUpdate(queryString);
+          stmt.close();
+          mycon.close();            
+      } catch (Exception E) {
+          E.printStackTrace();
+      }
+  }
+  
 }
