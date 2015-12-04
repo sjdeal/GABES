@@ -2,7 +2,6 @@ package group;
 
 import java.io.*;
 import java.sql.*;
-import oracle.jdbc.*;
 
 public class User implements Serializable {
   private int userId;
