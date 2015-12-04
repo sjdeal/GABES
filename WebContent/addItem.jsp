@@ -55,7 +55,7 @@
                             		<%} %>
                             	</select>
                             	<select name="startYear">
-                            		<% for(int i = java.util.Calendar.getInstance().YEAR; i <= java.util.Calendar.getInstance().YEAR + 5; i++){ %>
+                            		<% for(int i = 2015; i <= 2020; i++){ %>
                             			<option value="<%=i %>"><%=i %></option>
                             		<%} %>
                             	</select>
@@ -85,7 +85,7 @@
                             		<%} %>
                             	</select>
                             	<select name="endYear">
-                            		<% for(int i = java.util.Calendar.getInstance().YEAR; i <= java.util.Calendar.getInstance().YEAR + 5; i++){ %>
+                            		<% for(int i = 2015; i <= 2020; i++){ %>
                             			<option value="<%=i %>"><%=i %></option>
                             		<%} %>
                             	</select>

@@ -120,8 +120,15 @@ public class Item implements Serializable {
   public void addItem(){
       Connection mycon = DatabaseBConnection.openDBConnection();
       try{
-          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
-          PreparedStatement stmt = mycon.prepareStatement(queryString);
+    	  System.out.println(this.sellerId);
+    	  System.out.println(this.itemName);
+    	  System.out.println(this.category);
+    	  System.out.println(this.startPrice);
+    	  System.out.println(this.auctionStart);
+    	  System.out.println(this.auctionEnd);
+    	  System.out.println(this.description);
+          String queryString = "{call team2.ADD_ITEM(?, ?, ?, ?, ?, ?, ?)}";
+          CallableStatement stmt = mycon.prepareCall(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.sellerId);
           stmt.setString(2, this.itemName);
@@ -130,7 +137,8 @@ public class Item implements Serializable {
           stmt.setString(5, this.auctionStart);
           stmt.setString(6, this.auctionEnd);
           stmt.setString(7, this.description);
-          stmt.executeQuery();
+          
+          stmt.execute();
           stmt.close();
           mycon.close();
       }
@@ -151,11 +159,12 @@ public class Item implements Serializable {
 	    	query += " AND ITEMID = " + this.itemId;
 	    }
 	    if(this.description != (String) null){
-	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%'";
+	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%')";
 	    }
 	    if(this.category != (String) null){
 	    	query += " AND CATEGORY = " + this.category;
 	    }
+	    System.out.println("query : " + query);
 	    result = st.executeQuery(query);
 	    }
 	    catch(SQLException e){}
