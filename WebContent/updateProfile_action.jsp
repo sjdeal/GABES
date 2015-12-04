@@ -3,8 +3,8 @@
 <jsp:useBean id="customer" class="group.Customer" /> 
 <jsp:setProperty name="customer" property="*"/>
 <% 
-	customer.setFName((String)request.getAttribute("first"));
-	customer.setLName((String)request.getAttribute("last"));
+	customer.setFName((String)request.getParameter("first"));
+	customer.setLName((String)request.getParameter("last"));
 	System.out.println(customer.getFName());
 	System.out.println(customer.getLName());
 	System.out.println(customer.getEmail());

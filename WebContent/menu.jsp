@@ -12,10 +12,16 @@
         <a href="updateProfile.jsp">Update Profile</a><br>
         <br>
         <br>
-        <a href="sellingManagement.jsp">view sales summary report</a><br>
+        <a href="Search/Search.jsp">Search</a><br>
         <br>
         <br>
-        <a href="biddingManagement.jsp">view sales summary report</a><br>
+        <a href="viewMyFeedback.jsp">View My Feedback</a><br>
+        <br>
+        <br>
+        <a href="addItem.jsp">Add Item</a><br>
+        <br>
+        <br>
+        <a href="Scotts/ListMyItems.jsp">List My Items</a><br>
         <br>
 </body>
 </html>

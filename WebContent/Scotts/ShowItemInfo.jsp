@@ -12,6 +12,8 @@
 <%
 		
     try {
+    	System.out.println(request.getParameter("transNum"));
+    	item.setItemId(Integer.parseInt(request.getParameter("transNum")));
     	ResultSet rs = item.getItemInfo(); 
         while (rs.next()) {
     %>
