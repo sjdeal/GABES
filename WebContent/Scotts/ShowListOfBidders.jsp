@@ -7,7 +7,6 @@
 <body>
 	<%@ page language="java" import="java.sql.*" %>
 	<jsp:useBean id="bid" class="group.Bid" scope="session"/>
-	<jsp:useBean id="customer" class="group.Customer" scope="session"/>
 
 	<h1>List Of Bidders</h1>
 <%
@@ -20,31 +19,41 @@
 	<!-- <form method="post" action="ShowItemInfo_Action" name="EditForm"> -->
 	<table>
 	<tr>
-		<td> ITEM ID: <input readonly="readonly" name="ItemID" value="<%=rs.getInt("ITEMID")%>"> </td>
+		<td> ITEM ID: <%=rs.getInt("ITEMID")%> </td>
 	</tr>
 	<tr>
-		<td> <input readonly="readonly" name="AuctionStart" value="<%=rs.getDate("AUCTIONSTART")%>">
-		-<input readonly="readonly" name="AuctionEnd" value="<%=rs.getDate("AUCTIONEND")%>"> </td>
+		<td> <%=rs.getDate("AUCTIONSTART")%> - <%=rs.getDate("AUCTIONEND")%> </td>
 	</tr>
-	</table>
+	</table>	
+	
+	
+	<div>
+	
+	<br>
+	<br>
+	<table border = "1">
+	<tr>
+	<td> Bidding Time:</td>
+	<td> USER NAME:</td>
+	<td> Bidding Price:</td>
+	</tr>
 	
 	<% }rs = bid.getBiddersList(); 
     	while (rs.next()) { %>
 	
-	<table>
-	<tr>
-	<td> Bidding Time:</td>
-	<td> USER NAME:</td>
-	<td> Bidding Price</td>
-	</tr>
-	
 	<tr>
 	<td> <input readonly="readonly" name="BidDate" value="<%=rs.getDate("BidDate")%>">  </td>
 	<td> <input readonly="readonly" name="UserName" value="<%=rs.getString("USERNAME")%>">  </td>
-	<td>  <input readonly="readonly" name="MaxBid" value="<%=rs.getString("MAXBID")%>">   </td>
+	<td> <input readonly="readonly" name="MaxBid" value="<%=rs.getString("MAXBID")%>">   </td>
 	</tr>
-	
+	<%}rs.close();%>
 	</table>
+	
+	<form action="ShowItemInfo.jsp">
+    	<input type="submit" value="Cancel" style="color:black;">
+	</form>
+	
+	</div>
     
      
    
@@ -52,7 +61,7 @@
 
 </body>
 	<%
-        }rs.close();
+        
             
     } catch (Exception E) {
             E.printStackTrace();

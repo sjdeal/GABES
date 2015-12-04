@@ -72,6 +72,42 @@ public class Bid implements Serializable {
 		  return result;
 		  
 	  }
+  
+  public ResultSet getUsersBids() throws IllegalStateException {
+		try {
+		    Connection con = openDBConnection();
+		    Statement stmt = con.createStatement();
+		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_BID WHERE USERID = 3";
+		    ResultSet result = stmt.executeQuery(queryString);
+		    return result;
+		  }catch(SQLException se){}
+		   
+		  return result;
+	  }
+  
+  public ResultSet getUsersBought() throws IllegalStateException {
+		try {
+		    Connection con = openDBConnection();
+		    Statement stmt = con.createStatement();
+		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_PURCHASED WHERE USERID = 3";
+		    ResultSet result = stmt.executeQuery(queryString);
+		    return result;
+		  }catch(SQLException se){}
+		   
+		  return result;
+	  }
+  
+  public ResultSet getFinalPrice() throws IllegalStateException {
+		try {
+		    Connection con = openDBConnection();
+		    Statement stmt = con.createStatement();
+		    String queryString = "SELECT GET_FINAL_PRICE(3) FROM DUAL";
+		    ResultSet result = stmt.executeQuery(queryString);
+		    return result;
+		  }catch(SQLException se){}
+		   
+		  return result;
+	  }
 
   public Bid() {
   }

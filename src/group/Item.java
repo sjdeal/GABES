@@ -15,9 +15,16 @@ public class Item implements Serializable {
   private String auctionEnd;
   private String description;
   
+  private ResultSet result;
+  
   public int getItemId() {
-    return itemId;
+	  return this.itemId;
   }
+  
+  
+  //public double getItemId() {
+    //return itemId;
+  //}
   
   public void setItemId(int itemId) {
     this.itemId = itemId;
@@ -77,6 +84,35 @@ public class Item implements Serializable {
   
   public void setDescription(String description) {
     this.description = description;
+  }
+  
+  public Connection openDBConnection() {
+	    try {
+	      // Load driver and link to driver manager
+	      Class.forName("oracle.jdbc.OracleDriver");
+	      // Create a connection to the specified database
+	      Connection myConnection = DriverManager.getConnection("jdbc:oracle:thin:@//cscioraclesrv.ad.csbsju.edu:1521/" +
+                                                            "csci.cscioraclesrv.ad.csbsju.edu","team2", "dhhm4");
+	      return myConnection;
+	    } catch (Exception E) {
+	      E.printStackTrace();
+	    }
+	    return null;
+	  }
+  
+  public ResultSet getItemInfo() throws IllegalStateException {
+	try {
+	    Connection con = openDBConnection();
+	    Statement stmt = con.createStatement();
+	    String queryString = "SELECT * FROM GABES_ITEM WHERE ITEMID = 5";
+	    ResultSet result = stmt.executeQuery(queryString);
+	    return result;
+	  }
+	    
+	  catch(SQLException se){}
+	    
+	  return result;
+	  
   }
   
   public Item() {
