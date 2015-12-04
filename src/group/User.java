@@ -78,7 +78,7 @@ public class User implements Serializable {
       try {
           ResultSet rs;
           Statement stmt;
-          String queryString = "Select * from Team2.GABES_USER where username='" + this.getUserName()
+          String queryString = "Select * from team2.GABES_USER where username='" + this.getUserName()
                               + "' and password = '" + this.getPassword() + "'";
 
           stmt = con.createStatement();

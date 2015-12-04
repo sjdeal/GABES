@@ -3,7 +3,7 @@ package group;
 import java.io.*;
 import java.sql.*;
 import oracle.jdbc.*;
-import sjdeal.companyDB.DatabaseBConnection;
+import group.DatabaseBConnection;
 
 public class Customer implements Serializable {
   private int userId;
@@ -66,7 +66,7 @@ public class Customer implements Serializable {
     return sellerRating;
   }
   
-  public int setSellerRating(int sellerRating){
+  public void setSellerRating(int sellerRating){
 	  this.sellerRating = sellerRating;
   }
   
@@ -103,7 +103,8 @@ public class Customer implements Serializable {
           stmt.setString(3, this.email);
           stmt.setString(4, this.phone);
           stmt.setInt(5, this.userId);
-          stmt.executeUpdate(queryString);
+          stmt.executeUpdate();
+          System.out.println(stmt.toString());
           stmt.close();
           mycon.close();            
       } catch (Exception E) {
