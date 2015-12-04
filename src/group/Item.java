@@ -2,12 +2,11 @@ package group;
 
 import java.io.*;
 import java.sql.*;
-import oracle.jdbc.*;
 import group.DatabaseBConnection;
 
 public class Item implements Serializable {
-  private int itemId;
-  private int sellerId;
+  private Integer itemId;
+  private Integer sellerId;
   private String itemName;
   private String category;
   private double startPrice;
@@ -121,7 +120,7 @@ public class Item implements Serializable {
   public void addItem(){
       Connection mycon = DatabaseBConnection.openDBConnection();
       try{
-          String queryString = "EXECUTE team2.ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
+          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
           PreparedStatement stmt = mycon.prepareStatement(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.sellerId);
@@ -139,4 +138,27 @@ public class Item implements Serializable {
           E.printStackTrace();
       }
   }
+  public ResultSet search(){
+	  Connection con = DatabaseBConnection.openDBConnection();
+	    ResultSet result = null;
+//	    if(!this.loggedIn){
+//	      throw new IllegalStateException("CAN'T GET DATA IF USER IS NOT LOGGED IN");
+//	    }
+	    try{
+	    Statement st = con.createStatement();
+	    String query = "Select * From GABES_ITEM WHERE 1=1";
+	    if(this.itemId != null){
+	    	query += " AND ITEMID = " + this.itemId;
+	    }
+	    if(this.description != (String) null){
+	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%'";
+	    }
+	    if(this.category != (String) null){
+	    	query += " AND CATEGORY = " + this.category;
+	    }
+	    result = st.executeQuery(query);
+	    }
+	    catch(SQLException e){}
+	    return result;
+	  }
 }
