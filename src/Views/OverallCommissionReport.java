@@ -1,9 +1,10 @@
 package Views;
 
 import java.io.*;
+
 import java.sql.*;
 
-import Login.DatabaseBConnection;
+import group.DatabaseBConnection;
 
 public class OverallCommissionReport {
 
