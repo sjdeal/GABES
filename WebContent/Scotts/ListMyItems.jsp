@@ -6,14 +6,15 @@
 </head>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="bid" class="group.Bid" scope="session"/>
+	<jsp:useBean id="user" class="group.User" scope="session"/>
 
 	<h1>Bidding Management</h1>
 	
 	My Bids</br>
 <%
     try {
-    	ResultSet rs = bid.getUsersBids(); 
+    	System.out.println(user.getUserId());
+    	ResultSet rs = user.getUsersBids(); 
     	while(rs.next()) {
     %>
     
@@ -21,6 +22,7 @@
     <tr>
     <td> ITEM ID: <%=rs.getInt("ITEMID")%> </td>
     <td><form action="ShowItemInfo.jsp">
+    	<input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
     	<input type="submit" value="View Item" style="color:black;">
 	</form></td>
     </tr>
@@ -31,13 +33,14 @@
     <br> My Purchased Items</br>
     
     <%}rs.close(); 
-    rs = bid.getUsersBought(); 
+    rs = user.getUsersBought(); 
     	while(rs.next()) {%>
     	
     <table border = "1">
     <tr>
     <td> ITEM ID: <%=rs.getInt("ITEMID")%></td>
     <td><form action="ShowItemInfo.jsp">
+    	<input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
     	<input type="submit" value="View Item" style="color:black;">
 	</form></td>
     

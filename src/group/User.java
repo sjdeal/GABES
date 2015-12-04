@@ -9,6 +9,8 @@ public class User implements Serializable {
   private String userName;
   private String password;
   
+  public ResultSet result;
+  
   public int getUserId() {
     return userId;
   }
@@ -78,7 +80,7 @@ public class User implements Serializable {
       try {
           ResultSet rs;
           Statement stmt;
-          String queryString = "Select * from Team2.GABES_USER where username='" + this.getUserName()
+          String queryString = "Select * from team2.GABES_USER where username='" + this.getUserName()
                               + "' and password = '" + this.getPassword() + "'";
 
           stmt = con.createStatement();
@@ -107,5 +109,29 @@ public class User implements Serializable {
           E.printStackTrace();
           return null;
       }
-  }  
+  }
+  
+  public ResultSet getUsersBids() throws IllegalStateException {
+		try {
+		    Connection con = DatabaseBConnection.openDBConnection();
+		    Statement stmt = con.createStatement();
+		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_BID WHERE USERID = " + this.userId;
+		    ResultSet result = stmt.executeQuery(queryString);
+		    return result;
+		  }catch(SQLException se){}
+		   
+		  return result;
+	  }
+
+public ResultSet getUsersBought() throws IllegalStateException {
+		try {
+		    Connection con = DatabaseBConnection.openDBConnection();
+		    Statement stmt = con.createStatement();
+		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_PURCHASED WHERE USERID = " + this.userId;
+		    ResultSet result = stmt.executeQuery(queryString);
+		    return result;
+		  }catch(SQLException se){}
+		   
+		  return result;
+	  }
 }

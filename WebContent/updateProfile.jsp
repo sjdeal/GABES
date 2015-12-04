@@ -4,12 +4,12 @@
 <jsp:useBean id="customer" class="group.Customer" /> 
 <html>
     <body>
-        <a href="../Menu.html">back to menu</a><br>
+        <a href="../menu.jsp">back to menu</a><br>
         <%
         	customer.setUserId(user.getUserId());
             ResultSet rs = customer.getCustomer();
             if (!rs.next())
-                response.sendRedirect("../Login.html");
+                response.sendRedirect("Login.html");
             else {
         %>
 
@@ -26,14 +26,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;">First Name<br>
-                            </td>
-                            <td style="vertical-align: top;"><input name="fName"
-                                                                    value="<%=rs.getString("fName")%>"> </td>
+                            <td style="vertical-align: top;">First Name</td>
+                            <td style="vertical-align: top;"><input name="first" value="<%=rs.getString("fName")%>"> </td>
                         </tr>
                         <tr>
                             <td style="vertical-align: top;">Last Name</td>
-                            <td style="vertical-align: top;"><input name="lName" value="<%=rs.getString("lName")%>"> </td>
+                            <td style="vertical-align: top;"><input name="last" value="<%=rs.getString("lName")%>"> </td>
                         </tr>
                         <tr>
                             <td style="vertical-align: top;">Email</td>

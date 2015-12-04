@@ -103,7 +103,7 @@ public class Item implements Serializable {
 	try {
 	    Connection con = openDBConnection();
 	    Statement stmt = con.createStatement();
-	    String queryString = "SELECT * FROM GABES_ITEM WHERE ITEMID = 5";
+	    String queryString = "SELECT * FROM GABES_ITEM WHERE ITEMID = " + this.itemId;
 	    ResultSet result = stmt.executeQuery(queryString);
 	    return result;
 	  }

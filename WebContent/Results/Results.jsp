@@ -54,7 +54,7 @@
                     <td style="vertical-align: top; text-align: left;">?????<br>
                     </td>
                     <td style="vertical-align: top; text-align: center;">
-                        <form method="post" action="ItemInfo.jsp">
+                        <form method="post" action="../Scotts/ShowItemInfo.jsp">
                             <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
                             <input value="View" type="submit"><br>
                         </form>

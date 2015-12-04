@@ -104,7 +104,8 @@ public class Customer implements Serializable {
           stmt.setString(3, this.email);
           stmt.setString(4, this.phone);
           stmt.setInt(5, this.userId);
-          stmt.executeUpdate(queryString);
+          stmt.executeUpdate();
+          System.out.println(stmt.toString());
           stmt.close();
           mycon.close();            
       } catch (Exception E) {
