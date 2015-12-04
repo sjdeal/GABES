@@ -81,4 +81,26 @@ public class Item implements Serializable {
   
   public Item() {
   }
+  
+  public void addItem(){
+      Connection mycon = DatabaseBConnection.openDBConnection();
+      try{
+          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
+          PreparedStatement stmt = mycon.prepareStatement(queryString);
+          stmt.clearParameters();
+          stmt.setInt(1, this.sellerId);
+          stmt.setString(2, this.itemName);
+          stmt.setString(3, this.category);
+          stmt.setDouble(4, this.startPrice);
+          stmt.setString(5, this.auctionStart);
+          stmt.setString(6, this.auctionEnd);
+          stmt.setString(7, this.description);
+          stmt.executeQuery();
+          stmt.close();
+          mycon.close();
+      }
+      catch (Exception E) {
+          E.printStackTrace();
+      }
+  }
 }
