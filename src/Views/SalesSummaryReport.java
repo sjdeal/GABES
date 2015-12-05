@@ -1,9 +1,10 @@
 package Views;
 
 import java.io.*;
+
 import java.sql.*;
 
-import Login.DatabaseBConnection;
+import  group.DatabaseBConnection;
 
 public class SalesSummaryReport {
 
@@ -90,12 +91,12 @@ public class SalesSummaryReport {
 	        }
 	    }  
 	 
-	 public ResultSet totalSales(){
+	 public ResultSet totalC(){
 		 Connection mycon = DatabaseBConnection.openDBConnection();
-	        try{
-	            Statement stmt = mycon.createStatement();
-	            String queryString = "SELECT SUM(SELLING_PRICE) AS TOTAL from SALES_SUMMARY_REPORT";
-	            return stmt.executeQuery(queryString);
+		 try{
+	        	String queryString = "SELECT SALES_REPORT_TOTAL_COMM AS TOTAL FROM DUAL";
+	            PreparedStatement stmt = mycon.prepareStatement(queryString);
+	            return stmt.executeQuery();
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
@@ -103,38 +104,57 @@ public class SalesSummaryReport {
 	        }
 	 }
 	 
-	 public ResultSet subTotalSales(){
+	 public ResultSet totalP(){
 		 Connection mycon = DatabaseBConnection.openDBConnection();
-	        try{
-	            Statement stmt = mycon.createStatement();
-	            String queryString = "Select * from team2.SALES_SUMMARY_REPORT";
-	            return stmt.executeQuery(queryString);
+		 try{
+	        	String queryString = "SELECT SALES_REPORT_TOTAL_PRICE AS TOTAL FROM DUAL";
+	            PreparedStatement stmt = mycon.prepareStatement(queryString);
+	            return stmt.executeQuery();
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
 	            return null;
 	        }
 	 }
-	 /*public ResultSet viewReport1(){
-		 Connection con = openDBConnection();
-		    ResultSet result = null;
-		    try{
-		      String queryString = "Select * From  SALES_SUMMARY_REPORT;";
-		      PreparedStatement preparedStmt; 
-		      preparedStmt = con.prepareStatement(queryString);
-//		      preparedStmt.clearParameters();
-//		      preparedStmt.setString(1,this.username);
-//		      preparedStmt.setString(2,this.pin);
-//		      result = preparedStmt.executeQuery();
-//		      if(result.next()){
-//		          this.loggedIn = true;
-//		        }
-	            return preparedStmt.executeQuery(queryString);
-
-		    }
-		    catch(SQLException e){}
-		    return null;
-		    }*/
+	 
+	 public ResultSet subTotalPrice(){
+		 Connection mycon = DatabaseBConnection.openDBConnection();
+	        try{
+	        	String queryString = "SELECT SALES_REPORT_SUBTOTAL_PRICE(?) AS SUBTOTAL FROM DUAL";
+	            PreparedStatement stmt = mycon.prepareStatement(queryString);
+	            stmt.clearParameters();
+	            stmt.setString(1, this.category);
+	            System.out.println(queryString);
+	            return stmt.executeQuery();
+//	            Statement stmt = mycon.createStatement();
+//	            String queryString = "Select SALES_REPORT_SUBTOTAL_PRICE('"+this.getCategory()+"' ) AS SUBTOTAL from dual";
+//	            System.out.println(queryString);
+//	            return stmt.executeQuery(queryString);
+	        }
+	        catch (Exception E) {
+	            E.printStackTrace();
+	            return null;
+	        }
+	 }
+	 
+	 public ResultSet subTotalComm(){
+		 Connection mycon = DatabaseBConnection.openDBConnection();
+	        try{
+	        	String queryString = "SELECT SALES_REPORT_SUBTOTAL_COMM(?) AS SUBTOTAL FROM DUAL";
+	            PreparedStatement stmt = mycon.prepareStatement(queryString);
+	            stmt.clearParameters();
+	            stmt.setString(1, this.category);
+	            return stmt.executeQuery();
+//	            Statement stmt = mycon.createStatement();
+//	            String queryString = "Select SALES_REPORT_SUBTOTAL_COMM('"+this.getCategory()+"') AS SUBTOTAL from dual";
+//	            System.out.println(queryString);
+//	            return stmt.executeQuery(queryString);
+	        }
+	        catch (Exception E) {
+	            E.printStackTrace();
+	            return null;
+	        }
+	 }
 
 
 }

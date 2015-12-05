@@ -22,12 +22,13 @@
 		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Selling Price<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Commission<br>
+		
 		</td>
 		
 		</tr>
 		<%
 		ResultSet rs = salesSum.viewReport1();
-		ResultSet total = salesSum.totalSales();
+		
 		while(rs.next()){
 		%>
 		<tr>
@@ -39,23 +40,61 @@
 		</td>
 		<td align=right>$<%=rs.getDouble("selling_price")%><br>
 		</td>
-		<td align=right><%=rs.getDouble("commission")%><br>
+		<td align=right>$<%=rs.getDouble("commission")%><br>
 		</td>
 		</tr>
+		<% 
+		
+    	ResultSet subtotalc = salesSum.subTotalComm();
+		ResultSet subtotalp = salesSum.subTotalPrice();
+			while(subtotalc.next()){
+				while(subtotalp.next()){
+				System.out.println("3" + rs.getString("category"));%>
+		<tr>
+		<td style="vertical-align: top;">SUB TOTAL<br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td align=right>$<%=subtotalp.getDouble("SUBTOTAL")%><br>
+		</td>
+		<td align=right>$<%=subtotalc.getDouble("SUBTOTAL")%><br>
+ 		</td> 
+		</tr> 
 		<%
+		
+		} 
+		}
+			subtotalc.close();
+			subtotalp.close();
 		}
 		rs.close();
-		%>
-		<td style="vertical-align: top;font-weight: bold;">TOTAL<br>
+		ResultSet totalc = salesSum.totalC();
+		ResultSet totalp = salesSum.totalP();
+		while(totalc.next()){
+			while(totalp.next()){
+		%> 
+		<tr>
+		<td style="vertical-align: top;">TOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold;"><br>
+		<td align=right>$<%=totalp.getDouble("TOTAL")%><br>
 		</td>
-<%-- 		<td style="vertical-align: top;font-weight: bold;"><%=total.getDouble(0)%><br> --%>
-<!-- 		</td> -->
+		<td align=right>$<%=totalc.getDouble("TOTAL")%><br>
+ 		</td> 
+		</tr> 
+		<%
+		
+		} 
+		}
+			totalc.close();
+			totalp.close();
+
+		%> 
 		</tbody>
         </table>
         <br>
