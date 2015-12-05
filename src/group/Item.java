@@ -14,8 +14,29 @@ public class Item implements Serializable {
   private String auctionEnd;
   private String description;
   
+  private Short minRange;
+  private Short maxRange;
   private ResultSet result;
   
+  public double getMinRange() {
+	return minRange;
+  }
+	
+  
+  public void setMinRange(Short minRange) {
+	  this.minRange = minRange;
+  }
+	
+	
+  public Short getMaxRange() {
+	  return maxRange;
+  }
+	
+	
+  public void setMaxRange(Short maxRange) {
+	  this.maxRange = maxRange;
+  }
+	  
   public int getItemId() {
 	  return this.itemId;
   }
@@ -164,10 +185,32 @@ public class Item implements Serializable {
 	    if(this.category != (String) null){
 	    	query += " AND CATEGORY = " + this.category;
 	    }
-	    System.out.println("query : " + query);
+	    if(this.minRange != null){
+	    	query += " AND GET_FINAL_PRICE(ITEMID) > " + this.minRange;
+	    }
+	    if(this.maxRange != null){
+	    	query += " AND GET_FINAL_PRICE(ITEMID) < " + this.maxRange;
+	    }
 	    result = st.executeQuery(query);
 	    }
 	    catch(SQLException e){}
 	    return result;
 	  }
+  
+  public ResultSet currentBid(int id){
+	  Connection con = DatabaseBConnection.openDBConnection();
+	  ResultSet result = null;
+	  try{
+	      String queryString = "Select GET_FINAL_PRICE(?) AS FINAL FROM dual";
+	      PreparedStatement preparedStmt = con.prepareStatement(queryString);
+	      preparedStmt.clearParameters();
+	      preparedStmt.setInt(1,id);
+	      result = preparedStmt.executeQuery();
+//	      if(result.next()){
+//	    	  this.loggedIn = true;
+//	      }
+	  }
+	  catch(SQLException e){}
+	  return result;
+  }
 }

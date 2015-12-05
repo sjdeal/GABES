@@ -4,6 +4,8 @@
 <jsp:setProperty name="item" property="*"/> 
 
 <%
+//System.out.println(item.getMinRange());
+System.out.println(item.getMaxRange());
 RequestDispatcher dispatcher = request.getRequestDispatcher("../Results/Results.jsp");
 dispatcher.forward(request, response);
 %> 
