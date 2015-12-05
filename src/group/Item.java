@@ -14,8 +14,29 @@ public class Item implements Serializable {
   private String auctionEnd;
   private String description;
   
+  private Short minRange;
+  private Short maxRange;
   private ResultSet result;
   
+  public double getMinRange() {
+	return minRange;
+  }
+	
+  
+  public void setMinRange(Short minRange) {
+	  this.minRange = minRange;
+  }
+	
+	
+  public Short getMaxRange() {
+	  return maxRange;
+  }
+	
+	
+  public void setMaxRange(Short maxRange) {
+	  this.maxRange = maxRange;
+  }
+	  
   public int getItemId() {
 	  return this.itemId;
   }
@@ -120,8 +141,15 @@ public class Item implements Serializable {
   public void addItem(){
       Connection mycon = DatabaseBConnection.openDBConnection();
       try{
-          String queryString = "EXECUTE ADD_ITEM(?, ?, ?, ?, TO_Date(?,'DD-MM-YYYY'), TO_Date(?,'DD-MM-YYYY'), ?)";
-          PreparedStatement stmt = mycon.prepareStatement(queryString);
+    	  System.out.println(this.sellerId);
+    	  System.out.println(this.itemName);
+    	  System.out.println(this.category);
+    	  System.out.println(this.startPrice);
+    	  System.out.println(this.auctionStart);
+    	  System.out.println(this.auctionEnd);
+    	  System.out.println(this.description);
+          String queryString = "{call team2.ADD_ITEM(?, ?, ?, ?, ?, ?, ?)}";
+          CallableStatement stmt = mycon.prepareCall(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.sellerId);
           stmt.setString(2, this.itemName);
@@ -130,7 +158,8 @@ public class Item implements Serializable {
           stmt.setString(5, this.auctionStart);
           stmt.setString(6, this.auctionEnd);
           stmt.setString(7, this.description);
-          stmt.executeQuery();
+          
+          stmt.execute();
           stmt.close();
           mycon.close();
       }
@@ -151,14 +180,37 @@ public class Item implements Serializable {
 	    	query += " AND ITEMID = " + this.itemId;
 	    }
 	    if(this.description != (String) null){
-	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%'";
+	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%')";
 	    }
 	    if(this.category != (String) null){
 	    	query += " AND CATEGORY = " + this.category;
+	    }
+	    if(this.minRange != null){
+	    	query += " AND GET_FINAL_PRICE(ITEMID) > " + this.minRange;
+	    }
+	    if(this.maxRange != null){
+	    	query += " AND GET_FINAL_PRICE(ITEMID) < " + this.maxRange;
 	    }
 	    result = st.executeQuery(query);
 	    }
 	    catch(SQLException e){}
 	    return result;
 	  }
+  
+  public ResultSet currentBid(int id){
+	  Connection con = DatabaseBConnection.openDBConnection();
+	  ResultSet result = null;
+	  try{
+	      String queryString = "Select GET_FINAL_PRICE(?) AS FINAL FROM dual";
+	      PreparedStatement preparedStmt = con.prepareStatement(queryString);
+	      preparedStmt.clearParameters();
+	      preparedStmt.setInt(1,id);
+	      result = preparedStmt.executeQuery();
+//	      if(result.next()){
+//	    	  this.loggedIn = true;
+//	      }
+	  }
+	  catch(SQLException e){}
+	  return result;
+  }
 }

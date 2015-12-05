@@ -4,14 +4,14 @@
 <jsp:setProperty name="item" property="*"/>
 <%
     item.setSellerId(user.getUserId());
-	item.setAuctionStart((request.getAttribute("startDay")<=9 : "0" ? "") + 
-			request.getAttribute("startDay") + "-" +
-			request.getAttribute("startMonth") + "-" +
-			request.getAttribute("startYear"));
-	item.setAuctionEnd((request.getAttribute("endDay")<=9 : "0" ? "") + 
-			request.getAttribute("endDay") + "-" +
-			request.getAttribute("endMonth") + "-" +
-			request.getAttribute("endYear"));
+	item.setAuctionStart((Integer.parseInt((String)request.getParameter("startDay"))<=9 ? "0" : "") + 
+			(String)request.getParameter("startDay") + "-" +
+			(String)request.getParameter("startMonth") + "-" +
+			(String)request.getParameter("startYear"));
+	item.setAuctionEnd((Integer.parseInt((String)request.getParameter("endDay"))<=9 ? "0" : "") + 
+			(String)request.getParameter("endDay") + "-" +
+			(String)request.getParameter("endMonth") + "-" +
+			(String)request.getParameter("endYear"));
     item.addItem();
     response.sendRedirect("SellingManagement.jsp");
 %>

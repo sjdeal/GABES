@@ -15,13 +15,14 @@ http-equiv="content-type">
 			<option>Clothing</option>
 			<option>Electronics</option>
 			<option>Books</option>
+			<option>Body Parts</option>
 			<option>Miscellaneous</option>
 			</select><br>
 		Price Range <input name="minRange"> to <input name="maxRange"><br>
 		<input name="Reset" value="Reset" type="reset">
 		<input name="Submit" value="Search" type="submit"><br>
 	</form>
-	<form method="post" action="">  
+	<form method="post" action="../menu.jsp">  
 		<input name="Submit" value="Back" type="submit"><br>
 	</form> 
 <br>
