@@ -44,9 +44,10 @@
 		</td>
 		</tr>
 		<% 
-		
-    	ResultSet subtotalc = salesSum.subTotalComm();
-		ResultSet subtotalp = salesSum.subTotalPrice();
+		if(!prevCategory.equals(rs.getString("category"){ //If we are in a new category, print subtotals for the last one
+			salesSum.setCategory(prevCategory); 
+    			ResultSet subtotalc = salesSum.subTotalComm();
+			ResultSet subtotalp = salesSum.subTotalPrice();
 			while(subtotalc.next()){
 				while(subtotalp.next()){
 				System.out.println("3" + rs.getString("category"));%>
@@ -64,12 +65,42 @@
 		</tr> 
 		<%
 		
-		} 
-		}
+				} 
+			}
 			subtotalc.close();
 			subtotalp.close();
 		}
+		String prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
+		}
 		rs.close();
+		
+		//Print subtotals for the final category
+		salesSum.setCategory(prevCategory);
+    		ResultSet subtotalc = salesSum.subTotalComm();
+		ResultSet subtotalp = salesSum.subTotalPrice();
+		while(subtotalc.next()){
+			while(subtotalp.next()){
+			System.out.println("3" + rs.getString("category"));%>
+		<tr>
+		<td style="vertical-align: top;">SUB TOTAL<br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td align=right>$<%=subtotalp.getDouble("SUBTOTAL")%><br>
+		</td>
+		<td align=right>$<%=subtotalc.getDouble("SUBTOTAL")%><br>
+ 		</td> 
+		</tr> 
+		<%
+		
+			} 
+		}
+		subtotalc.close();
+		subtotalp.close();
+		
+		//Print totals
 		ResultSet totalc = salesSum.totalC();
 		ResultSet totalp = salesSum.totalP();
 		while(totalc.next()){
