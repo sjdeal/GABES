@@ -73,6 +73,24 @@ public class Bid implements Serializable {
 		  return result;
 	  }
 
-  public Bid() {
+  public void Bid() {
+	  Connection mycon = DatabaseBConnection.openDBConnection();
+      try{
+          
+          String queryString = "update team2.GABES_BID set " 
+                  + "USERID = ?, ITEMID = ?, MAXBID = ?, BIDDATE = ?";
+          PreparedStatement stmt = mycon.prepareStatement(queryString);
+          stmt.clearParameters();
+          stmt.setDouble(1, this.userId);
+          stmt.setDouble(2, this.itemId);
+          stmt.setDouble(3, this.maxBid);
+          stmt.setString(4, this.date);
+          stmt.executeUpdate();
+          System.out.println(stmt.toString());
+          stmt.close();
+          mycon.close();            
+      } catch (Exception E) {
+          E.printStackTrace();
+      }
   }
 }

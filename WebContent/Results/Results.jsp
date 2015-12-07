@@ -20,12 +20,18 @@
                 catch(IllegalStateException ise){
                 	out.println(ise.getMessage());
                 }
-                if(rs == null){
+                if(!rs.next()){
                 	%>
                 	<h5>No results found</h5>
                 	<%
                 }
                 else{
+                	try{
+                    	rs = item.search();
+                    }
+                    catch(IllegalStateException ise){
+                    	out.println(ise.getMessage());
+                    }
            		 	%>
 	                <tr>
 	                    <td style="vertical-align: top; text-align: left;">Item ID</td>
@@ -38,6 +44,7 @@
 	                    <td style="vertical-align: top;"></td>
 	                </tr>
                 	<%
+                	
 	                while (rs.next()) {
 	                	String start = rs.getString("AUCTIONSTART");
 	                	start = start.split(" ")[0];
@@ -78,8 +85,8 @@
 	                        </form>
 	                    </td>
 	                    <td style="vertical-align: top; text-align: center;">
-	                        <form method="post" action="PlaceBid.jsp">
-	                            <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
+	                        <form method="post" action="../Bid/Bid.jsp">
+	                            <input name="itemID" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
 	                            <input value="Bid" type="submit"><br>
 	                        </form>
 	                    </td>
