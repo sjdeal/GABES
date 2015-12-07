@@ -30,6 +30,7 @@
 		ResultSet rs = salesSum.viewReport1();
 		String prevCategory;
 		while(rs.next()){
+			prevCategory = rs.getString("category");
 		%>
 		<tr>
 		<td style="vertical-align: top;"><%=rs.getString("category")%><br>
@@ -53,7 +54,7 @@
 				while(subtotalp.next()){
 				System.out.println("3" + rs.getString("category"));%>
 		<tr>
-		<td style="vertical-align: top;">SUB TOTAL<br>
+		<td style="vertical-align: top; font-weight: bold;">SUB TOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
@@ -83,7 +84,7 @@
 			while(subtotalp.next()){
 			System.out.println("3" + rs.getString("category"));%>
 		<tr>
-		<td style="vertical-align: top;">SUB TOTAL<br>
+		<td style="vertical-align: top;">SUBTOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
@@ -100,7 +101,6 @@
 		}
 		subtotalc.close();
 		subtotalp.close();
-		
 		//Print totals
 		ResultSet totalc = salesSum.totalC();
 		ResultSet totalp = salesSum.totalP();
@@ -108,7 +108,7 @@
 			while(totalp.next()){
 		%> 
 		<tr>
-		<td style="vertical-align: top;">TOTAL<br>
+		<td style="vertical-align: top;font-weight: bold;">TOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>

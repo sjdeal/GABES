@@ -51,7 +51,30 @@
 		<%
 		}
 		rs.close();
-		%>
+		ResultSet total = overall.total();
+		while(total.next()){
+		%> 
+		<tr>
+		<td style="vertical-align: top;font-weight: bold;">TOTAL<br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right>$<%=total.getDouble("TOTAL")%><br>
+ 		</td> 
+		</tr> 
+		<%
+		
+		} 
+			total.close();
+%>
 		</tbody>
         </table>
         <br>
