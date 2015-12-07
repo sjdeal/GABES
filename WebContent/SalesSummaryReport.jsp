@@ -35,13 +35,13 @@
 		<% 
 		if(!prevCategory.equals("") && !prevCategory.equals(rs.getString("category"))){ //If we are in a new category, print subtotals for the last one
 			salesSum.setCategory(prevCategory); 
-    			ResultSet subtotalc = salesSum.subTotalComm();
+    		ResultSet subtotalc = salesSum.subTotalComm();
 			ResultSet subtotalp = salesSum.subTotalPrice();
 			while(subtotalc.next()){
 				while(subtotalp.next()){
-				System.out.println("3" + rs.getString("category"));%>
+				%>
 		<tr>
-		<td style="vertical-align: top; font-weight: bold;">SUB TOTAL<br>
+		<td style="vertical-align: top; ">SUBTOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
