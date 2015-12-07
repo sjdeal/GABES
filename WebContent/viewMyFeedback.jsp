@@ -42,5 +42,9 @@
 
             </tbody>
         </table>
+        
+        <form action="SellingManagement.jsp" >
+    		<input type="submit" value="Back" style="color:black;">
+		</form>
     </body>
 </html>

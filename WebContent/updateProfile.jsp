@@ -4,7 +4,7 @@
 <jsp:useBean id="customer" class="group.Customer" /> 
 <html>
     <body>
-        <a href="../menu.jsp">back to menu</a><br>
+        <!-- <a href="../menu.jsp">back to menu</a><br> -->
         <%
         	customer.setUserId(user.getUserId());
             ResultSet rs = customer.getCustomer();
@@ -60,8 +60,9 @@
                     </tbody>
                 </table>
                 <br>
-                <input value="Edit" type="submit">&nbsp; <input value="Reset"
+                <input value="Update" type="submit">&nbsp; <input value="Reset"
                                                                 type="reset"><br>
+                <a href="menu.jsp">Cancel</a><br>
                 <br>
             </form>
         </body>

@@ -41,15 +41,15 @@
     <td> ITEM ID: <%=rs.getInt("ITEMID")%></td>
     <td><form action="ShowItemInfo.jsp">
     	<input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
-    	<input type="submit" value="View Item" style="color:black;">
+    	<input type="submit" value="Leave Feedback" style="color:black;">
 	</form></td>
     
     </tr>
     </table>
 	<%}rs.close(); %>
 
-	<form action="ShowListOfBidders.jsp">
-    	<input type="submit" value="Cancel" style="color:black;">
+	<form action="menu.jsp">
+    	<input type="submit" value="Back" style="color:black;">
 	</form>
 	
 </body>
