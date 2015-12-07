@@ -130,7 +130,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="Menu.html">Return to Menu</a><br>
+        <a href="adminMenu.html">Return to Menu</a><br>
         <br>
     </body>
 </html>
