@@ -183,7 +183,7 @@ public class Item implements Serializable {
 	    	query += " AND (ITEMNAME LIKE '%" + this.description + "%' or DESCRIPTION LIKE '%" + this.description + "%')";
 	    }
 	    if(this.category != (String) null){
-	    	query += " AND CATEGORY = " + this.category;
+	    	query += " AND CATEGORY = '" + this.category + "'";
 	    }
 	    if(this.minRange != null){
 	    	query += " AND GET_FINAL_PRICE(ITEMID) > " + this.minRange;

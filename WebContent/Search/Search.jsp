@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.sql.*"%>
 <jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="item" class="group.Item" scope="session"/> 
+<jsp:useBean id="item" class="group.Item"/> 
 
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
@@ -12,11 +12,12 @@ http-equiv="content-type">
 		Keyword <input name="description"><br>
 		Category <select name="category">
 			<option></option>
-			<option>Clothing</option>
-			<option>Electronics</option>
-			<option>Books</option>
+			<option>A Dare</option>
 			<option>Body Parts</option>
-			<option>Miscellaneous</option>
+			<option>Books</option>
+			<option>Software</option>
+			<option>SWAG</option>
+			<option>Video</option>
 			</select><br>
 		Price Range <input name="minRange"> to <input name="maxRange"><br>
 		<input name="Reset" value="Reset" type="reset">
