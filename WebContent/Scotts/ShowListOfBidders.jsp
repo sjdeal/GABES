@@ -3,12 +3,17 @@
 <html>
 <head>
 <title>List Of Bidders</title>
+<jsp:useBean id="user" class="group.User" scope="session"/>
 </head>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
 	<jsp:useBean id="bid" class="group.Bid" />
 	<jsp:setProperty name="bid" property="*"/>
 
+	<%
+		if(!user.isLoggedIn())
+			response.sendRedirect("Login.html");
+	%>  
 	<h1>List Of Bidders</h1>
 <%
 	System.out.println(bid.getItemId());	

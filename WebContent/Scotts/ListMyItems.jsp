@@ -4,14 +4,18 @@
 <head>
 <title>List Of Bidders</title>
 </head>
+<jsp:useBean id="user" class="group.User" scope="session"/>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="user" class="group.User" scope="session"/>
+	<%
+		if(!user.isLoggedIn())
+			response.sendRedirect("Login.html");
+	%>
 
 	<h1>Bidding Management</h1>
 	
 	My Bids</br>
-<%
+	<%
     try {
     	System.out.println(user.getUserId());
     	ResultSet rs = user.getUsersBids(); 

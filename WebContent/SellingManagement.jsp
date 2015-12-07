@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*, java.util.*"%>
 <jsp:useBean id="item" class="group.Item" scope="request"/> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="user" class="group.User" scope="session"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,6 +11,10 @@
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
 	<body>
+		<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%>
 		
                 <%
                 ResultSet rs = null;

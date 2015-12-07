@@ -8,6 +8,11 @@ http-equiv="content-type">
 <title>Bid</title>
 </head>
 <body>
+	<%
+		if(!user.isLoggedIn())
+			response.sendRedirect("Login.html");
+	%>
+		
 <h1>Item <%= request.getParameter("itemID") %></h1>
 	<form method="post" action="Bid_action.jsp" name="BidForm"> Item
 		UserID <input readonly="readonly" name="userId" value="<%=user.getUserId() %>"><br>

@@ -2,10 +2,13 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" import="java.sql.*"%>
 <html>
+<jsp:useBean id="user" class="group.User" scope="session"/>
+		<%
+			System.out.println(user.isLoggedIn());
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%> 
     <body>
-        <!-- <a href="SellingManagement.jsp">Back to Selling Management</a><br> -->
-
-
             <br>
             <form method="post" action="addItem_action.jsp"><br>
                 <table style="text-align: left; width: 100%;" border="1"

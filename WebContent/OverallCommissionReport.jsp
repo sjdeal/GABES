@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.sql.*"%>
 <jsp:useBean id="overall" class="Views.OverallCommissionReport" /> 
+<jsp:useBean id="user" class="group.User" scope="session"/>
 
 <html>
     <head>
@@ -9,6 +10,10 @@
     </head>
     
     <body>
+   		<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%>
 		<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 		cellspacing="2">
 		<tbody>

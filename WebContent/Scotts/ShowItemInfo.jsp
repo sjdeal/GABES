@@ -4,10 +4,16 @@
 <head>
 <title>Item Information</title>
 </head>
+<jsp:useBean id="item" class="group.Item" />
+<jsp:useBean id="user" class="group.User" scope="session"/>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="item" class="group.Item" />
 
+	<%
+		if(!user.isLoggedIn())
+			response.sendRedirect("Login.html");
+	%>  
+	
 	<h1>Item Information</h1>
 <%
 		
@@ -64,8 +70,8 @@
     		<input type="submit" value="View Bidder List" style="color:black;">
 		</form>
 	
-		<form action="ShowListOfBidders.jsp" >
-    		<input type="submit" value="IDK where this is s'posed to go" style="color:black;">
+		<form action="SellingManagement" >
+    		<input type="submit" value="Cancel" style="color:black;">
 		</form>
 		</tr>
     </table>

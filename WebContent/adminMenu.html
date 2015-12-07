@@ -7,9 +7,14 @@ and open the template in the editor.
     <head>
         <title>Admin Menu</title>
         <h1>Admin Menu</h1>
+        <jsp:useBean id="user" class="group.User" scope="session"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+    <%
+		if(!user.isLoggedIn())
+			response.sendRedirect("Login.html");
+	%>  
         <br>
         <a href="SalesSummaryReport.jsp">view sales summary report</a><br>
         <br>

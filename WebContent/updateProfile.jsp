@@ -4,7 +4,10 @@
 <jsp:useBean id="customer" class="group.Customer" /> 
 <html>
     <body>
-        <!-- <a href="../menu.jsp">back to menu</a><br> -->
+    	<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%>
         <%
         	customer.setUserId(user.getUserId());
             ResultSet rs = customer.getCustomer();

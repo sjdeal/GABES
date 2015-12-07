@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="user" class="group.User" scope="session"/> 
-
+<jsp:useBean id="user" class="group.User" scope="session"/>
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,10 @@
         <title>View My Feedback</title>
     </head>
     <body>
+    	<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%>
 
         <a href="../SellingManagement.jsp">back to menu</a><br>
 
