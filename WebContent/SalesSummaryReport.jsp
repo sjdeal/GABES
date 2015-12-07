@@ -30,23 +30,10 @@
 		ResultSet rs = salesSum.viewReport1();
 		String prevCategory = "";
 		while(rs.next()){
-			prevCategory = rs.getString("category");
 		%>
-		<tr>
-		<td style="vertical-align: top;"><%=rs.getString("category")%><br>
-		</td>
-		<td align=right><%=rs.getInt("itemId")%><br>
-		</td>
-		<td style="vertical-align: top;"><%=rs.getString("itemName")%><br>
-		</td>
-		<td align=right>$<%=rs.getDouble("selling_price")%><br>
-		</td>
-		<td align=right>$<%=rs.getDouble("commission")%><br>
-		</td>
-		</tr>
+		
 		<% 
-		prevCategory = rs.getString("category");
-		if(!prevCategory.equals(rs.getString("category"))){ //If we are in a new category, print subtotals for the last one
+		if(!prevCategory.equals("") && !prevCategory.equals(rs.getString("category"))){ //If we are in a new category, print subtotals for the last one
 			salesSum.setCategory(prevCategory); 
     			ResultSet subtotalc = salesSum.subTotalComm();
 			ResultSet subtotalp = salesSum.subTotalPrice();
@@ -71,7 +58,20 @@
 			}
 			subtotalc.close();
 			subtotalp.close();
-		}
+		}%>
+		<tr>
+		<td style="vertical-align: top;"><%=rs.getString("category")%><br>
+		</td>
+		<td align=right><%=rs.getInt("itemId")%><br>
+		</td>
+		<td style="vertical-align: top;"><%=rs.getString("itemName")%><br>
+		</td>
+		<td align=right>$<%=rs.getDouble("selling_price")%><br>
+		</td>
+		<td align=right>$<%=rs.getDouble("commission")%><br>
+		</td>
+		</tr>
+		<% 
 		prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
 		}
 		rs.close();

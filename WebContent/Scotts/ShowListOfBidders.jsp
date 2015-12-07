@@ -6,11 +6,12 @@
 </head>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="bid" class="group.Bid" scope="session"/>
+	<jsp:useBean id="bid" class="group.Bid" />
+	<jsp:setProperty name="bid" property="*"/>
 
 	<h1>List Of Bidders</h1>
 <%
-		
+	System.out.println(bid.getItemId());	
     try {
     	ResultSet rs = bid.getBiddersList(); 
     	if(rs.next()) {

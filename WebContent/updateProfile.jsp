@@ -27,11 +27,11 @@
                         </tr>
                         <tr>
                         	<td style="vertical-align: top;">First Name</td>
-                        	<td style="vertical-align: top;"><input name="fName" value="<%=rs.getString("fName")%>"></td>
+                        	<td style="vertical-align: top;"><input name="first" value="<%=rs.getString("fName")%>"></td>
                         </tr>
                         <tr>
                         	<td style="vertical-align: top;">First Name</td>
-                        	<td style="vertical-align: top;"><input name="lName" value="<%=rs.getString("lName")%>"></td>
+                        	<td style="vertical-align: top;"><input name="last" value="<%=rs.getString("lName")%>"></td>
                         </tr>
                        	<tr>
                             <td style="vertical-align: top;">Email</td>

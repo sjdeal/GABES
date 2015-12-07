@@ -72,7 +72,7 @@
 	                    <td style="vertical-align: top; text-align: right;">$<%=Price%><br>
 	                    </td>
 	                    <td style="vertical-align: top; text-align: center;">
-	                        <form method="post" action="../Scotts/ShowItemInfo.jsp">
+	                        <form method="post" action="Scotts/ShowItemInfo.jsp">
 	                            <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
 	                            <input value="Info" type="submit"><br>
 	                        </form>

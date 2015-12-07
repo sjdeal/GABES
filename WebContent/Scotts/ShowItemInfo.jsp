@@ -6,7 +6,7 @@
 </head>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="item" class="group.Item" scope="session"/>
+	<jsp:useBean id="item" class="group.Item" />
 
 	<h1>Item Information</h1>
 <%
@@ -60,6 +60,7 @@
     	</form>
 
     	<form action="ShowListOfBidders.jsp" >
+    		<input type="hidden" name="itemId" value="<%=rs.getInt("ITEMID") %>">
     		<input type="submit" value="View Bidder List" style="color:black;">
 		</form>
 	

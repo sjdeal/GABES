@@ -48,7 +48,7 @@
     </table>
 	<%}rs.close(); %>
 
-	<form action="menu.jsp">
+	<form action="../menu.jsp">
     	<input type="submit" value="Back" style="color:black;">
 	</form>
 	
