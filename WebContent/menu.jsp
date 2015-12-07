@@ -7,6 +7,11 @@
 <title>Customer Menu</title>
 </head>
 <body>
+<jsp:useBean id="user" class="group.User" scope="session"/> 
+		<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+		%>
 
 		<br>
         <a href="updateProfile.jsp">Update Profile</a><br>
