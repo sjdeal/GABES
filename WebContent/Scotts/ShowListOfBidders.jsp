@@ -16,7 +16,6 @@
     	if(rs.next()) {
     %>
 
-	<!-- <form method="post" action="ShowItemInfo_Action" name="EditForm"> -->
 	<table>
 	<tr>
 		<td> ITEM ID: <%=rs.getInt("ITEMID")%> </td>
@@ -25,9 +24,6 @@
 		<td> <%=rs.getDate("AUCTIONSTART")%> - <%=rs.getDate("AUCTIONEND")%> </td>
 	</tr>
 	</table>	
-	
-	
-	<div>
 	
 	<br>
 	<br>
@@ -52,13 +48,8 @@
 	<form action="ShowItemInfo.jsp">
     	<input type="submit" value="Cancel" style="color:black;">
 	</form>
-	
-	</div>
-    
-     
-   
-    
 
+    
 </body>
 	<%
         

@@ -28,7 +28,7 @@
 		</tr>
 		<%
 		ResultSet rs = salesSum.viewReport1();
-		
+		String prevCategory;
 		while(rs.next()){
 		%>
 		<tr>
@@ -44,7 +44,8 @@
 		</td>
 		</tr>
 		<% 
-		if(!prevCategory.equals(rs.getString("category"){ //If we are in a new category, print subtotals for the last one
+		prevCategory = rs.getString("category");
+		if(!prevCategory.equals(rs.getString("category"))){ //If we are in a new category, print subtotals for the last one
 			salesSum.setCategory(prevCategory); 
     			ResultSet subtotalc = salesSum.subTotalComm();
 			ResultSet subtotalp = salesSum.subTotalPrice();
@@ -70,7 +71,7 @@
 			subtotalc.close();
 			subtotalp.close();
 		}
-		String prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
+		prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
 		}
 		rs.close();
 		
@@ -129,7 +130,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="Menu.html">Return to Menu</a><br>
+        <a href="adminMenu.html">Return to Menu</a><br>
         <br>
     </body>
 </html>

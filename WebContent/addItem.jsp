@@ -3,7 +3,7 @@
 <%@ page language="java" import="java.sql.*"%>
 <html>
     <body>
-        <a href="SellingManagement.jsp">Back to Selling Management</a><br>
+        <!-- <a href="SellingManagement.jsp">Back to Selling Management</a><br> -->
 
 
             <br>
@@ -103,6 +103,7 @@
                 <br>
                 <input value="Add" type="submit">&nbsp; <input value="Reset"
                                                                 type="reset"><br>
+                <a href="SellingManagement.jsp">Cancel</a><br>                                               
                 <br>
             </form>
         </body>

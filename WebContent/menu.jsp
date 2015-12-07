@@ -10,15 +10,12 @@
 
 		<br>
         <a href="updateProfile.jsp">Update Profile</a><br>
+        <br>      
+        <br>
+        <a href="SellingManagement.jsp">Selling Management</a><br>
         <br>
         <br>
         <a href="Search/Search.jsp">Search</a><br>
-        <br>
-        <br>
-        <a href="viewMyFeedback.jsp">View My Feedback</a><br>
-        <br>
-        <br>
-        <a href="addItem.jsp">Add Item</a><br>
         <br>
         <br>
         <a href="Scotts/ListMyItems.jsp">List My Items</a><br>

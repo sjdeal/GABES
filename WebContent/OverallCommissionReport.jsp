@@ -43,9 +43,9 @@
 		</td>
 		<td style="vertical-align: top;"><%=rs.getString("email")%><br>
 		</td>
-		<td align=right>$<%=rs.getInt("sellerrating")%><br>
+		<td align=right>$<%=rs.getInt("sellerRating")%><br>
 		</td>
-		<td align=right><%=rs.getDouble("commission")%><br>
+		<td align=right><%=rs.getDouble("commissions")%><br>
 		</td>
 		</tr>
 		<%
@@ -55,7 +55,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="Menu.html">Return to Menu</a><br>
+        <a href="adminMenu.html">Return to Menu</a><br>
         <br>
     </body>
 </html>
