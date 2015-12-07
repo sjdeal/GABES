@@ -28,7 +28,7 @@
 		</tr>
 		<%
 		ResultSet rs = salesSum.viewReport1();
-		String prevCategory;
+		String prevCategory = "";
 		while(rs.next()){
 			prevCategory = rs.getString("category");
 		%>
@@ -81,8 +81,7 @@
     		ResultSet subtotalc = salesSum.subTotalComm();
 		ResultSet subtotalp = salesSum.subTotalPrice();
 		while(subtotalc.next()){
-			while(subtotalp.next()){
-			System.out.println("3" + rs.getString("category"));%>
+			while(subtotalp.next()){%>
 		<tr>
 		<td style="vertical-align: top;">SUBTOTAL<br>
 		</td>
