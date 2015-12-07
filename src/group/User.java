@@ -8,6 +8,7 @@ public class User implements Serializable {
   private int userId;
   private String userName;
   private String password;
+  private boolean loggedIn = false;
   
   public ResultSet result;
   
@@ -33,6 +34,10 @@ public class User implements Serializable {
   
   public void setPassword(String password) {
     this.password = password;
+  }
+  
+  public boolean isLoggedIn(){
+	  return this.loggedIn;
   }
   
   public void updatePassword(){
@@ -87,8 +92,10 @@ public class User implements Serializable {
           rs = stmt.executeQuery(queryString);
 
           
-          if (rs.next())
+          if (rs.next()){
+        	  loggedIn = true;
               return true;
+          }
           else 
               return false;
       } catch (Exception E) {

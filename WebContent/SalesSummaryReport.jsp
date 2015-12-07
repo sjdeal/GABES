@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="salesSum" class="Views.SalesSummaryReport" scope="session"/> 
+<jsp:useBean id="salesSum" class="Views.SalesSummaryReport" /> 
 
 <html>
     <head>
@@ -28,31 +28,20 @@
 		</tr>
 		<%
 		ResultSet rs = salesSum.viewReport1();
-		
+		String prevCategory = "";
 		while(rs.next()){
 		%>
-		<tr>
-		<td style="vertical-align: top;"><%=rs.getString("category")%><br>
-		</td>
-		<td align=right><%=rs.getInt("itemId")%><br>
-		</td>
-		<td style="vertical-align: top;"><%=rs.getString("itemName")%><br>
-		</td>
-		<td align=right>$<%=rs.getDouble("selling_price")%><br>
-		</td>
-		<td align=right>$<%=rs.getDouble("commission")%><br>
-		</td>
-		</tr>
+		
 		<% 
-		if(!prevCategory.equals(rs.getString("category"){ //If we are in a new category, print subtotals for the last one
+		if(!prevCategory.equals("") && !prevCategory.equals(rs.getString("category"))){ //If we are in a new category, print subtotals for the last one
 			salesSum.setCategory(prevCategory); 
-    			ResultSet subtotalc = salesSum.subTotalComm();
+    		ResultSet subtotalc = salesSum.subTotalComm();
 			ResultSet subtotalp = salesSum.subTotalPrice();
 			while(subtotalc.next()){
 				while(subtotalp.next()){
-				System.out.println("3" + rs.getString("category"));%>
+				%>
 		<tr>
-		<td style="vertical-align: top;">SUB TOTAL<br>
+		<td style="vertical-align: top; ">SUBTOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
@@ -69,8 +58,21 @@
 			}
 			subtotalc.close();
 			subtotalp.close();
-		}
-		String prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
+		}%>
+		<tr>
+		<td style="vertical-align: top;"><%=rs.getString("category")%><br>
+		</td>
+		<td align=right><%=rs.getInt("itemId")%><br>
+		</td>
+		<td style="vertical-align: top;"><%=rs.getString("itemName")%><br>
+		</td>
+		<td align=right>$<%=rs.getDouble("selling_price")%><br>
+		</td>
+		<td align=right>$<%=rs.getDouble("commission")%><br>
+		</td>
+		</tr>
+		<% 
+		prevCategory = rs.getString("category"); //Hold on to this category to check if we need a subtotal
 		}
 		rs.close();
 		
@@ -79,10 +81,9 @@
     		ResultSet subtotalc = salesSum.subTotalComm();
 		ResultSet subtotalp = salesSum.subTotalPrice();
 		while(subtotalc.next()){
-			while(subtotalp.next()){
-			System.out.println("3" + rs.getString("category"));%>
+			while(subtotalp.next()){%>
 		<tr>
-		<td style="vertical-align: top;">SUB TOTAL<br>
+		<td style="vertical-align: top;">SUBTOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
@@ -99,7 +100,6 @@
 		}
 		subtotalc.close();
 		subtotalp.close();
-		
 		//Print totals
 		ResultSet totalc = salesSum.totalC();
 		ResultSet totalp = salesSum.totalP();
@@ -107,7 +107,7 @@
 			while(totalp.next()){
 		%> 
 		<tr>
-		<td style="vertical-align: top;">TOTAL<br>
+		<td style="vertical-align: top;font-weight: bold;">TOTAL<br>
 		</td>
 		<td style="vertical-align: top;font-weight: bold;"><br>
 		</td>
@@ -129,7 +129,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="Menu.html">Return to Menu</a><br>
+        <a href="adminMenu.html">Return to Menu</a><br>
         <br>
     </body>
 </html>

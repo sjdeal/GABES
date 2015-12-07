@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="overall" class="Views.OverallCommissionReport" scope="session"/> 
+<jsp:useBean id="overall" class="Views.OverallCommissionReport" /> 
 
 <html>
     <head>
@@ -43,19 +43,42 @@
 		</td>
 		<td style="vertical-align: top;"><%=rs.getString("email")%><br>
 		</td>
-		<td align=right>$<%=rs.getInt("sellerrating")%><br>
+		<td align=right>$<%=rs.getInt("sellerRating")%><br>
 		</td>
-		<td align=right><%=rs.getDouble("commission")%><br>
+		<td align=right><%=rs.getDouble("commissions")%><br>
 		</td>
 		</tr>
 		<%
 		}
 		rs.close();
-		%>
+		ResultSet total = overall.total();
+		while(total.next()){
+		%> 
+		<tr>
+		<td style="vertical-align: top;font-weight: bold;">TOTAL<br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td style="vertical-align: top;font-weight: bold;"><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right><br>
+		</td>
+		<td align=right>$<%=total.getDouble("TOTAL")%><br>
+ 		</td> 
+		</tr> 
+		<%
+		
+		} 
+			total.close();
+%>
 		</tbody>
         </table>
         <br>
-        <a href="Menu.html">Return to Menu</a><br>
+        <a href="adminMenu.html">Return to Menu</a><br>
         <br>
     </body>
 </html>

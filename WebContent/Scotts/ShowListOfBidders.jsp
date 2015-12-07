@@ -6,17 +6,17 @@
 </head>
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="bid" class="group.Bid" scope="session"/>
+	<jsp:useBean id="bid" class="group.Bid" />
+	<jsp:setProperty name="bid" property="*"/>
 
 	<h1>List Of Bidders</h1>
 <%
-		
+	System.out.println(bid.getItemId());	
     try {
     	ResultSet rs = bid.getBiddersList(); 
     	if(rs.next()) {
     %>
 
-	<!-- <form method="post" action="ShowItemInfo_Action" name="EditForm"> -->
 	<table>
 	<tr>
 		<td> ITEM ID: <%=rs.getInt("ITEMID")%> </td>
@@ -25,9 +25,6 @@
 		<td> <%=rs.getDate("AUCTIONSTART")%> - <%=rs.getDate("AUCTIONEND")%> </td>
 	</tr>
 	</table>	
-	
-	
-	<div>
 	
 	<br>
 	<br>
@@ -52,13 +49,8 @@
 	<form action="ShowItemInfo.jsp">
     	<input type="submit" value="Cancel" style="color:black;">
 	</form>
-	
-	</div>
-    
-     
-   
-    
 
+    
 </body>
 	<%
         

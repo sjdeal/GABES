@@ -48,7 +48,7 @@ public class Bid implements Serializable {
 		try {
 		    Connection con = DatabaseBConnection.openDBConnection();
 		    Statement stmt = con.createStatement();
-		    String queryString = "SELECT * FROM LIST_BIDDERS WHERE ITEMID = 2";
+		    String queryString = "SELECT * FROM LIST_BIDDERS WHERE ITEMID = " + this.itemId;
 		    ResultSet result = stmt.executeQuery(queryString);
 		    return result;
 		  }

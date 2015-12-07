@@ -124,7 +124,6 @@ public class SalesSummaryReport {
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
 	            stmt.clearParameters();
 	            stmt.setString(1, this.category);
-	            System.out.println(queryString);
 	            return stmt.executeQuery();
 //	            Statement stmt = mycon.createStatement();
 //	            String queryString = "Select SALES_REPORT_SUBTOTAL_PRICE('"+this.getCategory()+"' ) AS SUBTOTAL from dual";

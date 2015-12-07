@@ -110,6 +110,19 @@ public class OverallCommissionReport {
 	            return null;
 	        }
 	    }  
+	 
+	 public ResultSet total(){
+		 Connection mycon = DatabaseBConnection.openDBConnection();
+		 try{
+	        	String queryString = "SELECT COMMISSION_REPORT_TOTAL AS TOTAL FROM DUAL";
+	            PreparedStatement stmt = mycon.prepareStatement(queryString);
+	            return stmt.executeQuery();
+	        }
+	        catch (Exception E) {
+	            E.printStackTrace();
+	            return null;
+	        }
+	 }
 
 
 
