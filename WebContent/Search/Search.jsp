@@ -7,6 +7,10 @@ http-equiv="content-type">
 <title>Search</title>
 </head>
 <body>
+	<%
+		if(!user.isLoggedIn())
+			response.sendRedirect("../Login.html");
+	%>
 	<form method="post" action="Search_action.jsp" name="SearchForm"> Item
 		ID <input name="itemId"><br>
 		Keyword <input name="description"><br>

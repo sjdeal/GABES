@@ -11,7 +11,7 @@
 
 	<%
 		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 	%>  
 	
 	<h1>Item Information</h1>
@@ -61,16 +61,17 @@
    
     <table>
     	<tr>
-    	<form action="BidOnItem.jsp" >
-    	<input type="submit" value="Bid on Item" style="color:black;">
-    	</form>
+    	<form method="post" action="../Bid/Bid.jsp">
+	                            <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
+	                            <input value="Bid" type="submit" style="color:black;">
+	                        </form>
 
     	<form action="ShowListOfBidders.jsp" >
     		<input type="hidden" name="itemId" value="<%=rs.getInt("ITEMID") %>">
     		<input type="submit" value="View Bidder List" style="color:black;">
 		</form>
 	
-		<form action="SellingManagement" >
+		<form action="../SellingManagement.jsp" >
     		<input type="submit" value="Cancel" style="color:black;">
 		</form>
 		</tr>

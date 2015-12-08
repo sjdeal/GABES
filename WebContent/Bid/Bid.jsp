@@ -10,13 +10,13 @@ http-equiv="content-type">
 <body>
 	<%
 		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 	%>
 		
-<h1>Item <%= request.getParameter("itemID") %></h1>
+<h1>Item <%= request.getParameter("itemId") %></h1>
 	<form method="post" action="Bid_action.jsp" name="BidForm"> Item
 		UserID <input readonly="readonly" name="userId" value="<%=user.getUserId() %>"><br>
-		Item ID <input readonly="readonly" name="itemId" value="<%= request.getParameter("itemID") %>"><br>
+		Item ID <input readonly="readonly" name="itemId" value="<%= request.getParameter("itemId") %>"><br>
 		Max Bid <input name="maxBid"><br>
 		Date <select name="bidMonth">
                             		<option value="JAN">January</option>

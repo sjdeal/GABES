@@ -14,7 +14,7 @@
                
     <%
 		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 	%>           
 	<body>
 		

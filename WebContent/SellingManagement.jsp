@@ -82,7 +82,7 @@
 	                        </form>
 	                    </td>
 	                    <td style="vertical-align: top; text-align: center;">
-	                        <form method="post" action="BidOnItem.jsp">
+	                        <form method="post" action="Bid/Bid.jsp">
 	                            <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
 	                            <input value="Bid" type="submit"><br>
 	                        </form>

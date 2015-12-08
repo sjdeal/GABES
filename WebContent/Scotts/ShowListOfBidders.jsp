@@ -12,7 +12,7 @@
 
 	<%
 		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 	%>  
 	<h1>List Of Bidders</h1>
 <%
@@ -48,14 +48,15 @@
 	<td> <input readonly="readonly" name="UserName" value="<%=rs.getString("USERNAME")%>">  </td>
 	<td> <input readonly="readonly" name="MaxBid" value="<%=rs.getString("MAXBID")%>">   </td>
 	</tr>
-	<%}rs.close();%>
+	<%} %>
 	</table>
 	
-	<form action="ShowItemInfo.jsp">
-    	<input type="submit" value="Cancel" style="color:black;">
-	</form>
-
-    
+	
+	<form method="post" action="ShowItemInfo.jsp">
+		<input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
+		<input value="Cancel" type="submit" style="color:black;"><br>
+	</form>  
+	<%rs.close();%> 
 </body>
 	<%
         

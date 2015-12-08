@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="user" class="group.User" scope="session"/>
 <html>
 <head>
 <title>List Of Bidders</title>
 </head>
-<jsp:useBean id="user" class="group.User" scope="session"/>
 <body>
-	<%@ page language="java" import="java.sql.*" %>
 	<%
 		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
+			response.sendRedirect("../Login.html");
 	%>
+	
+	<%@ page language="java" import="java.sql.*" %>
+	
 
 	<h1>Bidding Management</h1>
 	
