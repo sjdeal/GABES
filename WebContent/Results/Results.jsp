@@ -13,7 +13,7 @@
 <body>
 <%
 			if(!user.isLoggedIn())
-				response.sendRedirect("Login.html");
+				response.sendRedirect("../Login.html");
 			cust.setUserId(user.getUserId());
 			ResultSet rs = cust.getCustomer();
 			if(rs.next()){
@@ -31,10 +31,6 @@
 		<br>
 		<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
-               
-               
-            
-	
 		
                 <%
                 rs = null;

@@ -12,7 +12,7 @@ http-equiv="content-type">
 
 	<%
 			if(!user.isLoggedIn())
-				response.sendRedirect("Login.html");
+				response.sendRedirect("../Login.html");
 			cust.setUserId(user.getUserId());
 			ResultSet rs = cust.getCustomer();
 			if(rs.next()){
@@ -27,7 +27,6 @@ http-equiv="content-type">
 				Welcome, <%=cust.getFName() %>
 			</div>
 		</div>
-
 	<form method="post" action="Search_action.jsp" name="SearchForm"> Item
 		ID <input name="itemId"><br>
 		Keyword <input name="description"><br>

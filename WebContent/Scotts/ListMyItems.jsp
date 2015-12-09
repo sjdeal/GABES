@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.sql.*"%>
 <html>
 <head>
 <title>List Of Bidders</title>
@@ -8,10 +8,9 @@
 <jsp:useBean id="user" class="group.User" scope="session"/>
 <jsp:useBean id="cust" class="group.Customer" />
 <body>
-	<%@ page language="java" import="java.sql.*" %>
 	<%
 			if(!user.isLoggedIn())
-				response.sendRedirect("Login.html");
+				response.sendRedirect("../Login.html");
 			cust.setUserId(user.getUserId());
 			ResultSet rs = cust.getCustomer();
 			if(rs.next()){
@@ -26,6 +25,9 @@
 				Welcome, <%=cust.getFName() %>
 			</div>
 		</div>
+		if(!user.isLoggedIn())
+			response.sendRedirect("../Login.html");
+	%>
 
 	<h1>Bidding Management</h1>
 	
