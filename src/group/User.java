@@ -94,14 +94,26 @@ public class User implements Serializable {
           
           if (rs.next()){
         	  loggedIn = true;
+        	  stmt.close();
+        	  con.close();
               return true;
           }
-          else 
-              return false;
+          else{
+        	  stmt.close();
+        	  con.close();
+        	  return false;
+          }
       } catch (Exception E) {
           E.printStackTrace();
           return false;
       }
+  }
+  
+  public void logout(){
+	  this.userId = 0;
+	  this.userName = "";
+	  this.password = "";
+	  this.loggedIn = false;
   }
 
   public ResultSet getUser(){

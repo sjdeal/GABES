@@ -2,13 +2,31 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" import="java.sql.*"%>
 <html>
-<jsp:useBean id="user" class="group.User" scope="session"/>
-		<%
-			System.out.println(user.isLoggedIn());
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Add Item</title>
+        <jsp:useBean id="user" class="group.User" scope="session"/>
+        <jsp:useBean id="cust" class="group.Customer" />
+		<link rel="stylesheet" type="text/css" href="./CSS/format.css">
+    </head>	
+    <body>
+    	<%
 			if(!user.isLoggedIn())
 				response.sendRedirect("Login.html");
-		%> 
-    <body>
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
+		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>
             <br>
             <form method="post" action="addItem_action.jsp"><br>
                 <table style="text-align: left; width: 100%;" border="1"

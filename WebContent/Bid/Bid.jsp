@@ -2,16 +2,31 @@
 <%@ page language="java" import="java.util.*"%>
 <jsp:useBean id="user" class="group.User" scope="session"/>
 <jsp:useBean id="bid" class="group.Bid"/> 
+<jsp:useBean id="cust" class="group.Customer"/>
 
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
 <title>Bid</title>
+<link rel="stylesheet" type="text/css" href="../CSS/format.css">
 </head>
 <body>
 	<%
-		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
-	%>
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
+		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>
 		
 <h1>Item <%= request.getParameter("itemID") %></h1>
 	<form method="post" action="Bid_action.jsp" name="BidForm"> Item

@@ -1,24 +1,39 @@
 <%@ page language="java" import="java.sql.*"%>
 <jsp:useBean id="user" class="group.User" scope="session"/>
+<jsp:useBean id="cust" class="group.Customer" />
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View My Feedback</title>
+        <link rel="stylesheet" type="text/css" href="./CSS/format.css">
     </head>
     <body>
     	<%
 			if(!user.isLoggedIn())
 				response.sendRedirect("Login.html");
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
 		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>
 
         <a href="../SellingManagement.jsp">back to menu</a><br>
 
         <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
             <tbody>
-                <tr>
+                <tr class="first-row">
                     <td style="vertical-align: top; text-align: center;">User ID</td>
                     <td style="vertical-align: top; text-align: center;">Item ID</td>
                     <td style="vertical-align: top; text-align: center;">Overall Satisfaction</td>

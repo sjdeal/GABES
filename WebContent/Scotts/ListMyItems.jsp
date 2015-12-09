@@ -3,14 +3,29 @@
 <html>
 <head>
 <title>List Of Bidders</title>
+<link rel="stylesheet" type="text/css" href="../CSS/format.css">
 </head>
 <jsp:useBean id="user" class="group.User" scope="session"/>
+<jsp:useBean id="cust" class="group.Customer" />
 <body>
 	<%@ page language="java" import="java.sql.*" %>
 	<%
-		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
-	%>
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
+		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>
 
 	<h1>Bidding Management</h1>
 	
@@ -18,7 +33,7 @@
 	<%
     try {
     	System.out.println(user.getUserId());
-    	ResultSet rs = user.getUsersBids(); 
+    	rs = user.getUsersBids(); 
     	while(rs.next()) {
     %>
     
@@ -55,13 +70,11 @@
 	<form action="../menu.jsp">
     	<input type="submit" value="Back" style="color:black;">
 	</form>
-	
-</body>
 	<%
             
     } catch (Exception E) {
             E.printStackTrace();
         }
-    %> 
-
+    %>
+</body>
 </html>

@@ -17,7 +17,7 @@
     	if(rs.next())
         	response.sendRedirect("menu.jsp");
     	else
-    		response.sendRedirect("adminMenu.html");
+    		response.sendRedirect("adminMenu.jsp");
     }
 %> 
 

@@ -3,23 +3,41 @@
 <%@ page language="java" import="java.sql.*, java.util.*"%>
 <jsp:useBean id="item" class="group.Item" scope="request"/> 
 <jsp:useBean id="user" class="group.User" scope="session"/>
+<jsp:useBean id="cust" class="group.Customer" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Results</title>
+<link rel="stylesheet" type="text/css" href="../CSS/format.css">
 </head>
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+<body>
+<%
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
+		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>  
+		<br>
+		<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
                
                
-    <%
-		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
-	%>           
-	<body>
+            
+	
 		
                 <%
-                ResultSet rs = null;
+                rs = null;
                 try{
                 	rs = item.search();
                 }
@@ -39,7 +57,7 @@
                     	out.println(ise.getMessage());
                     }
            		 	%>
-	                <tr>
+	                <tr class="first-row">
 	                    <td style="vertical-align: top; text-align: left;">Item ID</td>
 	                    <td style="vertical-align: top; text-align: left;">Item Name</td>
 	                    <td style="vertical-align: top; text-align: left;">Category</td>
@@ -103,9 +121,11 @@
                 }
                 %>
          	 
-	</body>
+	
 </table>
+
 	<form method="post" action="../Search/Search.jsp">  
 	<input name="Submit" value="Back to search" type="submit"><br>
 	</form>   
+</body>
 </html>

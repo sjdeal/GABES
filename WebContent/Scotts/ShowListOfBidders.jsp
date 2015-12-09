@@ -4,21 +4,35 @@
 <head>
 <title>List Of Bidders</title>
 <jsp:useBean id="user" class="group.User" scope="session"/>
-</head>
+<jsp:useBean id="cust" class="group.Customer" />
+<link rel="stylesheet" type="text/css" href="../CSS/format.css">
 <body>
 	<%@ page language="java" import="java.sql.*" %>
 	<jsp:useBean id="bid" class="group.Bid" />
 	<jsp:setProperty name="bid" property="*"/>
 
 	<%
-		if(!user.isLoggedIn())
-			response.sendRedirect("Login.html");
-	%>  
+			if(!user.isLoggedIn())
+				response.sendRedirect("Login.html");
+			cust.setUserId(user.getUserId());
+			ResultSet rs = cust.getCustomer();
+			if(rs.next()){
+				cust.setFName(rs.getString("fName"));
+			}
+		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, <%=cust.getFName() %>
+			</div>
+		</div>
 	<h1>List Of Bidders</h1>
 <%
 	System.out.println(bid.getItemId());	
     try {
-    	ResultSet rs = bid.getBiddersList(); 
+    	rs = bid.getBiddersList(); 
     	if(rs.next()) {
     %>
 
@@ -34,7 +48,7 @@
 	<br>
 	<br>
 	<table border = "1">
-	<tr>
+	<tr class="first-row">
 	<td> Bidding Time:</td>
 	<td> USER NAME:</td>
 	<td> Bidding Price:</td>
@@ -54,9 +68,6 @@
 	<form action="ShowItemInfo.jsp">
     	<input type="submit" value="Cancel" style="color:black;">
 	</form>
-
-    
-</body>
 	<%
         
             
@@ -64,5 +75,6 @@
             E.printStackTrace();
         }
     %> 
-
+    
+</body>
 </html>

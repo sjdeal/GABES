@@ -6,27 +6,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sales Summary Report</title>
-        <h1 align = "center"> Sales Summary Report</h1>
+		<link rel="stylesheet" type="text/css" href="./CSS/format.css">
     </head>
-    
     <body>
     	<%
 			if(!user.isLoggedIn())
 				response.sendRedirect("Login.html");
 		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, Admin
+			</div>
+		</div>
+		<h1 align = "center"> Sales Summary Report</h1>
 		<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 		cellspacing="2">
 		<tbody>
-		<tr>
-		<td style="vertical-align: top; font-weight: bold; background-color: rgb(204, 204, 204);">Category<br>
+		<tr class="first-row">
+		<td style="vertical-align: top;">Category<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Item ID<br>
+		<td style="vertical-align: top;">Item ID<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Item Name<br>
+		<td style="vertical-align: top;">Item Name<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Selling Price<br>
+		<td style="vertical-align: top;">Selling Price<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Commission<br>
+		<td style="vertical-align: top;">Commission<br>
 		
 		</td>
 		
@@ -134,7 +142,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="adminMenu.html">Return to Menu</a><br>
+        <a href="adminMenu.jsp">Return to Menu</a><br>
         <br>
     </body>
 </html>

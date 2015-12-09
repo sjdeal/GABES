@@ -12,5 +12,5 @@ bid.setDate((Integer.parseInt((String)request.getParameter("bidDay"))<=9 ? "0" :
 		(String)request.getParameter("bidMonth") + "-" +
 		(String)request.getParameter("bidYear"));
 bid.Bid();
-response.sendRedirect("../Results/Results.jsp");
+response.sendRedirect("../SellingManagement.jsp");
 %> 

@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Overall Commission Report</title>
-        <h1 align = "center"> Overall Commission Report</h1>
+		<link rel="stylesheet" type="text/css" href="./CSS/format.css">
     </head>
     
     <body>
@@ -14,23 +14,32 @@
 			if(!user.isLoggedIn())
 				response.sendRedirect("Login.html");
 		%>
+		<div class="header-container">
+			<div class="header">
+			GABES
+			</div>
+			<div class="header2">
+				Welcome, Admin
+			</div>
+		</div>
+		<h1 align = "center"> Overall Commission Report</h1>
 		<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
 		cellspacing="2">
 		<tbody>
-		<tr>
-		<td style="vertical-align: top; font-weight: bold; background-color: rgb(204, 204, 204);">User ID<br>
+		<tr class="first-row">
+		<td style="vertical-align: top;">User ID<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Username<br>
+		<td style="vertical-align: top;">Username<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">First Name<br>
+		<td style="vertical-align: top;">First Name<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Last Name<br>
+		<td style="vertical-align: top;">Last Name<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Email<br>
+		<td style="vertical-align: top;">Email<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Seller Rating<br>
+		<td style="vertical-align: top;">Seller Rating<br>
 		</td>
-		<td style="vertical-align: top;font-weight: bold; background-color: rgb(204, 204, 204);">Commission<br>
+		<td style="vertical-align: top;">Commission<br>
 		</td>
 		</tr>
 		<%
@@ -83,7 +92,7 @@
 		</tbody>
         </table>
         <br>
-        <a href="adminMenu.html">Return to Menu</a><br>
+        <a href="adminMenu.jsp">Return to Menu</a><br>
         <br>
     </body>
 </html>

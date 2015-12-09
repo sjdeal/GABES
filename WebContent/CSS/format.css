@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+html {
+	background: #F9F9F9;
+	font: 
+}
+
+body {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.header-container{
+	background: #80BFFF;
+	font-size: xx-large;
+}
+
+.header {
+	background: #80BFFF;
+	text-align: left;
+	display: inline-block;
+}
+
+.header2 {
+	background: #80BFFF;
+	font-size: medium;
+	display: inline-block;
+	vertical-align: text-bottom;
+	float: right;
+}
+
+.main {
+	padding-top: 10px;
+}
+
+.login{
+	text-align: center;
+	font-weight: bold;
+}
+
+table {
+	
+}
+
+tr:nth-child(even) {
+	background: #99CCFF;
+}
+
+tr:nth-child(odd):not(.first-row) {
+	background: #FF9999;
+}
+
+.first-row {
+	font-weight: bold;
+	background: #CCCCCC;
+}
+
+input[type="submit"]{
+	background-color: #5CADFF;
+}
+
+input[type="reset"]{
+	background-color: #FF5C5C;
+}
