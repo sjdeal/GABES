@@ -62,7 +62,8 @@
 	<td> <input readonly="readonly" name="UserName" value="<%=rs.getString("USERNAME")%>">  </td>
 	<td> <input readonly="readonly" name="MaxBid" value="<%=rs.getString("MAXBID")%>">   </td>
 	</tr>
-	<%} %>
+	<%} rs = bid.getBiddersList(); 
+    	if(rs.next()){%>
 	</table>
 
 	
@@ -70,7 +71,7 @@
 		<input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
 		<input value="Cancel" type="submit" style="color:black;"><br>
 	</form>  
-	<%rs.close(); 
+	<%}rs.close(); 
         
             
     } catch (Exception E) {
