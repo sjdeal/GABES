@@ -46,10 +46,13 @@ public class Bid implements Serializable {
   
   public ResultSet getBiddersList() throws IllegalStateException {
 		try {
-		    Connection con = DatabaseBConnection.openDBConnection();
-		    Statement stmt = con.createStatement();
-		    String queryString = "SELECT * FROM LIST_BIDDERS WHERE ITEMID = " + this.itemId;
-		    ResultSet result = stmt.executeQuery(queryString);
+			Connection con = DatabaseBConnection.openDBConnection();
+			String queryString = "SELECT * FROM LIST_BIDDERS WHERE ITEMID = ?";
+	        PreparedStatement stmt = con.prepareStatement(queryString);
+	        stmt.clearParameters();
+	        stmt.setDouble(1, this.itemId);
+	        ResultSet result = stmt.executeQuery();
+	        stmt.close();
 		    return result;
 		  }
 		    
@@ -61,12 +64,13 @@ public class Bid implements Serializable {
   
   
   
-  public ResultSet getFinalPrice() throws IllegalStateException {
+	public ResultSet getFinalPrice() throws IllegalStateException {
 		try {
 		    Connection con = DatabaseBConnection.openDBConnection();
-		    Statement stmt = con.createStatement();
-		    String queryString = "SELECT GET_FINAL_PRICE(3) FROM DUAL";
-		    ResultSet result = stmt.executeQuery(queryString);
+		    PreparedStatement stmt = con.prepareStatement("SELECT GET_FINAL_PRICE(?) FROM DUAL");
+		    stmt.clearParameters();
+		    stmt.setDouble(1, this.itemId);
+		    ResultSet result = stmt.executeQuery();
 		    return result;
 		  }catch(SQLException se){}
 		   

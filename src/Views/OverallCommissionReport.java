@@ -101,9 +101,8 @@ public class OverallCommissionReport {
 	 public ResultSet viewReport2(){
 	        Connection mycon = DatabaseBConnection.openDBConnection();
 	        try{
-	            Statement stmt = mycon.createStatement();
-	            String queryString = "Select * from team2.Overall_Commission_Report";
-	            return stmt.executeQuery(queryString);
+	            PreparedStatement stmt = mycon.prepareStatement("Select * from team2.Overall_Commission_Report");
+	            return stmt.executeQuery();
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();

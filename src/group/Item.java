@@ -123,9 +123,10 @@ public class Item implements Serializable {
   public ResultSet getItemInfo() throws IllegalStateException {
 	try {
 	    Connection con = openDBConnection();
-	    Statement stmt = con.createStatement();
-	    String queryString = "SELECT * FROM GABES_ITEM WHERE ITEMID = " + this.itemId;
-	    ResultSet result = stmt.executeQuery(queryString);
+	    PreparedStatement stmt = con.prepareStatement("SELECT * FROM GABES_ITEM WHERE ITEMID = ?");
+	    stmt.clearParameters();
+	    stmt.setDouble(1, this.itemId);
+	    ResultSet result = stmt.executeQuery();
 	    return result;
 	  }
 	    

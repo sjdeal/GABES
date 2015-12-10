@@ -84,12 +84,11 @@ public class User implements Serializable {
       Connection con = DatabaseBConnection.openDBConnection();
       try {
           ResultSet rs;
-          Statement stmt;
-          String queryString = "Select * from team2.GABES_USER where username='" + this.getUserName()
-                              + "' and password = '" + this.getPassword() + "'";
-
-          stmt = con.createStatement();
-          rs = stmt.executeQuery(queryString);
+          PreparedStatement stmt = con.prepareStatement("Select * from team2.GABES_USER where username= ? and password = ?");
+          stmt.clearParameters();
+          stmt.setString(1, this.userName);
+          stmt.setString(2, this.password);
+          rs = stmt.executeQuery();
 
           
           if (rs.next()){
@@ -119,10 +118,11 @@ public class User implements Serializable {
   public ResultSet getUser(){
       Connection mycon = DatabaseBConnection.openDBConnection();
       try{
-          Statement stmt = mycon.createStatement();
-          String queryString = "Select * from team2.GABES_USER where username='" + this.getUserName() + "' and "
-                  + " password ='"+this.getPassword()+"'";
-          return stmt.executeQuery(queryString);
+          PreparedStatement stmt = mycon.prepareStatement("Select * from team2.GABES_USER where username= ? and password = ?");
+          stmt.clearParameters();
+          stmt.setString(1, this.userName);
+          stmt.setString(2, this.password);
+          return stmt.executeQuery();
       }
       catch (Exception E) {
           E.printStackTrace();
@@ -133,9 +133,10 @@ public class User implements Serializable {
   public ResultSet getUsersBids() throws IllegalStateException {
 		try {
 		    Connection con = DatabaseBConnection.openDBConnection();
-		    Statement stmt = con.createStatement();
-		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_BID WHERE USERID = " + this.userId;
-		    ResultSet result = stmt.executeQuery(queryString);
+		    PreparedStatement stmt = con.prepareStatement("select * from bidding_management_bid where userid = ?");
+		    stmt.clearParameters();
+		    stmt.setInt(1, this.userId);
+		    ResultSet result = stmt.executeQuery();
 		    return result;
 		  }catch(SQLException se){}
 		   
@@ -145,9 +146,10 @@ public class User implements Serializable {
 public ResultSet getUsersBought() throws IllegalStateException {
 		try {
 		    Connection con = DatabaseBConnection.openDBConnection();
-		    Statement stmt = con.createStatement();
-		    String queryString = "SELECT * FROM BIDDING_MANAGEMENT_PURCHASED WHERE USERID = " + this.userId;
-		    ResultSet result = stmt.executeQuery(queryString);
+		    PreparedStatement stmt = con.prepareStatement("SELECT * FROM BIDDING_MANAGEMENT_PURCHASED WHERE USERID = ?");
+		    stmt.clearParameters();
+		    stmt.setDouble(1, this.userId);
+		    ResultSet result = stmt.executeQuery();
 		    return result;
 		  }catch(SQLException se){}
 		   

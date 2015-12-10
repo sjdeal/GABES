@@ -81,9 +81,8 @@ public class SalesSummaryReport {
 	 public ResultSet viewReport1(){
 	        Connection mycon = DatabaseBConnection.openDBConnection();
 	        try{
-	            Statement stmt = mycon.createStatement();
-	            String queryString = "Select * from team2.SALES_SUMMARY_REPORT";
-	            return stmt.executeQuery(queryString);
+	            PreparedStatement stmt = mycon.prepareStatement("Select * from team2.SALES_SUMMARY_REPORT");
+	            return stmt.executeQuery();
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
