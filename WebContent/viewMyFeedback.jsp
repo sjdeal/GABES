@@ -40,7 +40,7 @@
                     <td style="vertical-align: top; text-align: center;">Comments</td>
                 </tr>
                 <%
-                        ResultSet rs = user.getFeedbackForUser();
+                        rs = user.getFeedbackForUser();
                         while (rs.next()) {
                 %> 
 
