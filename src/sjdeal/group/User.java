@@ -51,9 +51,7 @@ public class User implements Serializable {
           stmt.clearParameters();
           stmt.setString(1, this.password);
           stmt.setInt(2, this.userId);
-          stmt.executeUpdate(queryString);
-          stmt.close();
-          mycon.close();            
+          stmt.executeUpdate(queryString);           
       } catch (Exception E) {
           E.printStackTrace();
       }
@@ -70,8 +68,6 @@ public class User implements Serializable {
           stmt.clearParameters();
           stmt.setInt(1, this.userId);
           ResultSet result = stmt.executeQuery();
-          stmt.close();
-          mycon.close();
           return result;
       }
       catch (Exception E) {

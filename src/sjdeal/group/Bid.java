@@ -88,9 +88,7 @@ public class Bid implements Serializable {
           stmt.setDouble(2, this.itemId);
           stmt.setDouble(3, this.maxBid);
           stmt.setString(4, this.date);
-          stmt.executeUpdate();
-          stmt.close();
-          mycon.close();            
+          stmt.executeUpdate();           
       } catch (Exception E) {
           E.printStackTrace();
       }

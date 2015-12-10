@@ -162,8 +162,6 @@ public class Item implements Serializable {
           stmt.setString(7, this.description);
           
           stmt.execute();
-          stmt.close();
-          mycon.close();
       }
       catch (Exception E) {
           E.printStackTrace();
@@ -194,8 +192,6 @@ public class Item implements Serializable {
 	    	query += " AND GET_FINAL_PRICE(ITEMID) < " + this.maxRange;
 	    }
 	    result = st.executeQuery(query);
-	    st.close();
-	    con.close();
 	    }
 	    catch(SQLException e){}
 	    return result;
@@ -210,8 +206,6 @@ public class Item implements Serializable {
 	      preparedStmt.clearParameters();
 	      preparedStmt.setInt(1,id);
 	      result = preparedStmt.executeQuery();
-	      preparedStmt.close();
-	      con.close();
 //	      if(result.next()){
 //	    	  this.loggedIn = true;
 //	      }
