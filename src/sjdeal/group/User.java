@@ -1,4 +1,4 @@
-package group;
+package sjdeal.group;
 
 import java.io.*;
 
@@ -69,7 +69,10 @@ public class User implements Serializable {
           PreparedStatement stmt = mycon.prepareStatement(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.userId);
-          return stmt.executeQuery();
+          ResultSet result = stmt.executeQuery();
+          stmt.close();
+          mycon.close();
+          return result;
       }
       catch (Exception E) {
           E.printStackTrace();
@@ -89,17 +92,11 @@ public class User implements Serializable {
           stmt.setString(1, this.userName);
           stmt.setString(2, this.password);
           rs = stmt.executeQuery();
-
-          
           if (rs.next()){
         	  loggedIn = true;
-        	  stmt.close();
-        	  con.close();
               return true;
           }
           else{
-        	  stmt.close();
-        	  con.close();
         	  return false;
           }
       } catch (Exception E) {
@@ -122,7 +119,8 @@ public class User implements Serializable {
           stmt.clearParameters();
           stmt.setString(1, this.userName);
           stmt.setString(2, this.password);
-          return stmt.executeQuery();
+          ResultSet result = stmt.executeQuery();
+          return result;
       }
       catch (Exception E) {
           E.printStackTrace();

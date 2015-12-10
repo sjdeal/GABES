@@ -1,10 +1,10 @@
-package group;
+package sjdeal.group;
 
 import java.io.*;
 
 import java.sql.*;
 import oracle.jdbc.*;
-import group.DatabaseBConnection;
+import sjdeal.group.DatabaseBConnection;
 
 public class Customer implements Serializable {
   private int userId;
@@ -82,7 +82,8 @@ public class Customer implements Serializable {
           PreparedStatement stmt = mycon.prepareStatement(queryString);
           stmt.clearParameters();
           stmt.setInt(1, this.userId);
-          return stmt.executeQuery();
+          ResultSet result = stmt.executeQuery();
+          return result;
       }
       catch (Exception E) {
           E.printStackTrace();

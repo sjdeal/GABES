@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="user" class="group.User" scope="session"/> 
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/> 
 <%       
     user.logout();
 	session.invalidate();

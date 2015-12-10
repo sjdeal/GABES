@@ -1,4 +1,4 @@
-package group;
+package sjdeal.group;
 
 import java.io.*;
 import java.sql.*;
@@ -52,7 +52,6 @@ public class Bid implements Serializable {
 	        stmt.clearParameters();
 	        stmt.setDouble(1, this.itemId);
 	        ResultSet result = stmt.executeQuery();
-	        stmt.close();
 		    return result;
 		  }
 		    
@@ -90,7 +89,6 @@ public class Bid implements Serializable {
           stmt.setDouble(3, this.maxBid);
           stmt.setString(4, this.date);
           stmt.executeUpdate();
-          System.out.println(stmt.toString());
           stmt.close();
           mycon.close();            
       } catch (Exception E) {

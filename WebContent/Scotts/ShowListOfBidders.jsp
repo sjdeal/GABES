@@ -3,12 +3,12 @@
 <html>
 <head>
 <title>List Of Bidders</title>
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="cust" class="group.Customer" />
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="cust" class="sjdeal.group.Customer" />
 <link rel="stylesheet" type="text/css" href="../CSS/format.css">
 <body>
 	<%@ page language="java" import="java.sql.*" %>
-	<jsp:useBean id="bid" class="group.Bid" />
+	<jsp:useBean id="bid" class="sjdeal.group.Bid" />
 	<jsp:setProperty name="bid" property="*"/>
 
 	<%

@@ -5,8 +5,8 @@
 <title>List Of Bidders</title>
 <link rel="stylesheet" type="text/css" href="../CSS/format.css">
 </head>
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="cust" class="group.Customer" />
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="cust" class="sjdeal.group.Customer" />
 <body>
 	<%
 			if(!user.isLoggedIn())

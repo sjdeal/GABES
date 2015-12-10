@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="bid" class="group.Bid"/> 
-<jsp:useBean id="cust" class="group.Customer"/>
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="bid" class="sjdeal.group.Bid"/> 
+<jsp:useBean id="cust" class="sjdeal.group.Customer"/>
 
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
@@ -28,10 +28,10 @@ http-equiv="content-type">
 			</div>
 		</div>
 		
-<h1>Item <%= request.getParameter("itemId") %></h1>
+<h1>Item <%= request.getParameter("itemID") %></h1>
 	<form method="post" action="Bid_action.jsp" name="BidForm"> Item
 		UserID <input readonly="readonly" name="userId" value="<%=user.getUserId() %>"><br>
-		Item ID <input readonly="readonly" name="itemId" value="<%= request.getParameter("itemId") %>"><br>
+		Item ID <input readonly="readonly" name="itemId" value="<%= request.getParameter("itemID") %>"><br>
 		Max Bid <input name="maxBid"><br>
 		Date <select name="bidMonth">
                             		<option value="JAN">January</option>

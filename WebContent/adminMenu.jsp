@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Admin Menu</title>
-        <jsp:useBean id="user" class="group.User" scope="session"/>
+        <jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="./CSS/format.css">
     </head>

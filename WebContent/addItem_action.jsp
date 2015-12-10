@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="user" class="group.User" scope="session"/> 
-<jsp:useBean id="item" class="group.Item"/> 
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/> 
+<jsp:useBean id="item" class="sjdeal.group.Item"/> 
 <jsp:setProperty name="item" property="*"/>
 <%
     item.setSellerId(user.getUserId());

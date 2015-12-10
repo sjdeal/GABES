@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="overall" class="Views.OverallCommissionReport" /> 
-<jsp:useBean id="user" class="group.User" scope="session"/>
+<jsp:useBean id="overall" class="sjdeal.Views.OverallCommissionReport" /> 
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
 
 <html>
     <head>

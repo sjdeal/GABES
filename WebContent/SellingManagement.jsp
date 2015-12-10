@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*, java.util.*"%>
-<jsp:useBean id="item" class="group.Item" scope="request"/> 
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="cust" class="group.Customer" />
+<jsp:useBean id="item" class="sjdeal.group.Item" scope="request"/> 
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="cust" class="sjdeal.group.Customer" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

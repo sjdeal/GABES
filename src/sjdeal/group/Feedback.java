@@ -1,4 +1,4 @@
-package group;
+package sjdeal.group;
 
 import java.io.*;
 import java.sql.*;

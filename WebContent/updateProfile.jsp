@@ -1,8 +1,8 @@
 
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="customer" class="group.Customer" /> 
-<jsp:useBean id="cust" class="group.Customer" />
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="customer" class="sjdeal.group.Customer" /> 
+<jsp:useBean id="cust" class="sjdeal.group.Customer" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="./CSS/format.css">

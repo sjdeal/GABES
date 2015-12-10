@@ -1,10 +1,10 @@
-package Views;
+package sjdeal.Views;
 
 import java.io.*;
 
 import java.sql.*;
 
-import group.DatabaseBConnection;
+import sjdeal.group.DatabaseBConnection;
 
 public class OverallCommissionReport {
 
@@ -102,7 +102,8 @@ public class OverallCommissionReport {
 	        Connection mycon = DatabaseBConnection.openDBConnection();
 	        try{
 	            PreparedStatement stmt = mycon.prepareStatement("Select * from team2.Overall_Commission_Report");
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
@@ -115,7 +116,8 @@ public class OverallCommissionReport {
 		 try{
 	        	String queryString = "SELECT COMMISSION_REPORT_TOTAL AS TOTAL FROM DUAL";
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();

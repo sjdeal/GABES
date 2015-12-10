@@ -5,9 +5,9 @@
 <title>Item Information</title>
 <link rel="stylesheet" type="text/css" href="../CSS/format.css">
 </head>
-<jsp:useBean id="item" class="group.Item" />
-<jsp:useBean id="user" class="group.User" scope="session"/>
-<jsp:useBean id="cust" class="group.Customer" />
+<jsp:useBean id="item" class="sjdeal.group.Item" />
+<jsp:useBean id="user" class="sjdeal.group.User" scope="session"/>
+<jsp:useBean id="cust" class="sjdeal.group.Customer" />
 <body>
 	<%@ page language="java" import="java.sql.*" %>
 
@@ -76,30 +76,17 @@
    
     <table>
     	<tr>
-<<<<<<< HEAD
-    	<td>
-    	<form action="../Bid/Bid.jsp" >
-    	<input type="submit" value="Bid on Item" style="color:black;">
-    	</form>
-		</td>
-		<td>
-=======
     	<form method="post" action="../Bid/Bid.jsp">
-	                            <input name="transNum" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
+	                            <input name="itemID" type="hidden" value ="<%=rs.getInt("ITEMID")%>">
 	                            <input value="Bid" type="submit" style="color:black;">
 	                        </form>
 
->>>>>>> f899b625f083dfbd5d611a39e377f452dae62c7a
     	<form action="ShowListOfBidders.jsp" >
     		<input type="hidden" name="itemId" value="<%=rs.getInt("ITEMID") %>">
     		<input type="submit" value="View Bidder List" style="color:black;">
 		</form>
-<<<<<<< HEAD
 		</td>
 		<td>
-=======
-	
->>>>>>> f899b625f083dfbd5d611a39e377f452dae62c7a
 		<form action="../SellingManagement.jsp" >
     		<input type="submit" value="Cancel" style="color:black;">
 		</form>

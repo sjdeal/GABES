@@ -1,8 +1,9 @@
-package group;
+package sjdeal.group;
 
 import java.io.*;
 import java.sql.*;
-import group.DatabaseBConnection;
+
+import sjdeal.group.DatabaseBConnection;
 
 public class Item implements Serializable {
   private Integer itemId;
@@ -193,6 +194,8 @@ public class Item implements Serializable {
 	    	query += " AND GET_FINAL_PRICE(ITEMID) < " + this.maxRange;
 	    }
 	    result = st.executeQuery(query);
+	    st.close();
+	    con.close();
 	    }
 	    catch(SQLException e){}
 	    return result;
@@ -207,6 +210,8 @@ public class Item implements Serializable {
 	      preparedStmt.clearParameters();
 	      preparedStmt.setInt(1,id);
 	      result = preparedStmt.executeQuery();
+	      preparedStmt.close();
+	      con.close();
 //	      if(result.next()){
 //	    	  this.loggedIn = true;
 //	      }

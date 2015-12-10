@@ -1,10 +1,10 @@
-package Views;
+package sjdeal.Views;
 
 import java.io.*;
 
 import java.sql.*;
 
-import  group.DatabaseBConnection;
+import sjdeal.group.DatabaseBConnection;
 
 public class SalesSummaryReport {
 
@@ -82,7 +82,8 @@ public class SalesSummaryReport {
 	        Connection mycon = DatabaseBConnection.openDBConnection();
 	        try{
 	            PreparedStatement stmt = mycon.prepareStatement("Select * from team2.SALES_SUMMARY_REPORT");
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
@@ -95,7 +96,8 @@ public class SalesSummaryReport {
 		 try{
 	        	String queryString = "SELECT SALES_REPORT_TOTAL_COMM AS TOTAL FROM DUAL";
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
@@ -108,7 +110,8 @@ public class SalesSummaryReport {
 		 try{
 	        	String queryString = "SELECT SALES_REPORT_TOTAL_PRICE AS TOTAL FROM DUAL";
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
@@ -123,7 +126,8 @@ public class SalesSummaryReport {
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
 	            stmt.clearParameters();
 	            stmt.setString(1, this.category);
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 //	            Statement stmt = mycon.createStatement();
 //	            String queryString = "Select SALES_REPORT_SUBTOTAL_PRICE('"+this.getCategory()+"' ) AS SUBTOTAL from dual";
 //	            System.out.println(queryString);
@@ -131,6 +135,7 @@ public class SalesSummaryReport {
 	        }
 	        catch (Exception E) {
 	            E.printStackTrace();
+	            
 	            return null;
 	        }
 	 }
@@ -142,7 +147,8 @@ public class SalesSummaryReport {
 	            PreparedStatement stmt = mycon.prepareStatement(queryString);
 	            stmt.clearParameters();
 	            stmt.setString(1, this.category);
-	            return stmt.executeQuery();
+	            ResultSet result = stmt.executeQuery();
+	            return result;
 //	            Statement stmt = mycon.createStatement();
 //	            String queryString = "Select SALES_REPORT_SUBTOTAL_COMM('"+this.getCategory()+"') AS SUBTOTAL from dual";
 //	            System.out.println(queryString);
