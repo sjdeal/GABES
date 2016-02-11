@@ -1,2 +1,2 @@
 # GABES
-Hello
+This project was created by Sean Deal, Scott Herscher, Danny Holtkamp, and Alli Mohr. GABES is an electronic bidding system in which users can buy and sell items in an online auction format. Buyers enter a maximum bidding amount for an item, and the item is sold to the user who bids the most after the amount of time set by the seller. Buyers can then leave feedback on their purchased items.
